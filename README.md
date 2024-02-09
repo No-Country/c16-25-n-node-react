@@ -1,4 +1,4 @@
-# c16-25-geek-e-commerce
+# c16-25-n-node-react-geek-e-commerce
 
 # MVP: Plataforma Ecommerce Productos Geeks para el Hogar
 
