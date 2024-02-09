@@ -25,7 +25,7 @@
 
 ## Roles:
 -  **Sabrina Sosa, Alberto Llatas:** Diseño UX/UI.
-- **Ezequiel Ramirez, Diego Lacub, Luciano Pardo:** Desarrollo Front-end.
+- **Ezequiel Ramirez, Diego Lacub, Florencia Mendoza, Luciano Pardo:** Desarrollo Front-end.
 - **Billy Campagnolly:** TL.
 
 ## Tecnologías y herramientas a utilizar:
