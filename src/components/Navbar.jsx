@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaRegUser } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
-import { FaRobot, FaJedi, FaGamepad } from "react-icons/fa";
+import { FaRobot, FaJedi, FaGamepad, FaShoppingCart } from "react-icons/fa";
 
 export const Navbar = () => {
   return (
@@ -25,8 +25,9 @@ export const Navbar = () => {
           </span>
           <input className='mx-3 bg-white outline-none' placeholder="Search..." type="text"></input>
         </div>
-        <div className=''>
-          <FaRegUser className='text-2xl'/>
+        <div className='flex justify-between'>
+          <FaShoppingCart className='text-2xl mx-2'/>
+          <FaRegUser className='text-2xl mx-2'/>
         </div>
       </div>
     </nav>
