@@ -4,6 +4,7 @@ import './App.css'
 import ProductDetail from './components/ProductDetail'
 import ProductList from './components/ProductList'
 import { Navbar } from './components/Navbar'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <ProductList/>
       <h3>Detalles del Producto:</h3>
       <ProductDetail productId="9H1ZbrozIEAmbgHRg3NR" />
+    <Footer />
     </>
   )
 }
