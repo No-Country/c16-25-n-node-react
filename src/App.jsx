@@ -1,23 +1,28 @@
 // import { useState } from 'react'
 import './App.css'
 
-import ProductDetail from './components/ProductDetail'
-import ProductList from './components/ProductList'
 import { Navbar } from './components/Navbar'
 import Footer from './components/Footer'
+
+import { Route, Switch } from 'wouter'
+import Home from './pages/Home'
+import ProductDetail from './components/ProductDetail'
+import Signin from './pages/Signin'
+
 
 function App() {
 
   return (
     <>
-    <Navbar/>
-      <h1>Geek E-commerce</h1>
-      <br />
-      <br />
-      <ProductList/>
-      <h3>Detalles del Producto:</h3>
-      <ProductDetail productId="9H1ZbrozIEAmbgHRg3NR" />
-    <Footer />
+      <Navbar />
+      <Switch>
+        <Route path='/' component={Home} />
+        <Route path='/product'>
+          <ProductDetail productId='9H1ZbrozIEAmbgHRg3NR' />
+        </Route>
+        <Route path='/signin' component={Signin}/>
+      </Switch>
+      <Footer />
     </>
   )
 }

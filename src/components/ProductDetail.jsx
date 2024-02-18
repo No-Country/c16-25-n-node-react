@@ -4,11 +4,12 @@ import { db } from "../firebase/config";
 
 
 
-const ProductDetail = () => {
+const ProductDetail = ({productId}) => {
+    
     const [product, setProduct] = useState(null);
     
     // PASAR el id por PROP
-    const productId = "9H1ZbrozIEAmbgHRg3NR"
+    // const productId = "9H1ZbrozIEAmbgHRg3NR"
     useEffect(() => {
     const fetchProduct = async () => {
       const productRef = doc(db, "products", productId);
@@ -29,8 +30,9 @@ const ProductDetail = () => {
 
   return (
     <div>
-      <h1>{product.title}</h1>
-      <p>{product.author}</p>
+      <h1>{product.categoria}</h1>
+      <p>{product.descripcion}</p>
+      <a href="">{product.imagen}</a>
       {/* Mostrar otros detalles del producto aquí */}
     </div>
   );
