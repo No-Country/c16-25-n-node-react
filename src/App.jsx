@@ -10,6 +10,8 @@ import ProductDetail from './components/ProductDetail'
 import Login from './pages/Login'
 import Register from './pages/Register'
 
+// import { AuthProvider } from "./context/AuthContext";
+
 
 function App() {
 

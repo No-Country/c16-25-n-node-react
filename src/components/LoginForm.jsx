@@ -1,44 +1,71 @@
 import { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+// import { useAuth } from "../context/AuthContext";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase/config';
 
-const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+const LoginForm = () =>  {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  // const { login } = useAuth();
+  const login = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleRegister = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      console.log(email);
-      // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
+      await login(user.email, user.password);
+      console.log("Usuario Logueado");
+
     } catch (error) {
       console.log(error);
-      // Manejar el error de registro, puedes mostrar un mensaje de error al usuario
     }
   };
 
+  const handleChange = ({ target: { value, name } }) =>
+    setUser({ ...user, [name]: value });
+  
+
   return (
-    <div>
-      <h2>Registro de Usuario</h2>
-      <form onSubmit={handleRegister}>
+    <div className="flex flex-col items-center mt-8 rounded-lg shadow-lg p-8 w-72">
+      <h2 className="text-2xl font-bold mb-4">Inicio de Sesión</h2>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={handleEmailChange} />
+          <label htmlFor="email" className="text-sm">
+            Email:
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            onChange={handleChange}
+            placeholder="youremail@company.tld"
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
         <div>
-          <label>Contraseña:</label>
-          <input type="password" value={password} onChange={handlePasswordChange} />
+          <label htmlFor="password" className="text-sm">
+            Contraseña:
+          </label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={handleChange}
+            placeholder="*************"
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
-        <button type="submit">Registrarse</button>
+        <button
+          type="submit"
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+        >
+          Iniciar Sesión
+        </button>
       </form>
     </div>
   );
