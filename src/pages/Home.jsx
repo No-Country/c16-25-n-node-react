@@ -15,6 +15,8 @@ function Home() {
                 {user && <p>Email: {user.email}</p>} 
                 {/* Muestra el email del usuario si está autenticado */}
             </h2>
+            <button onClick={() => auth.signOut()}>Cerrar sesión</button>
+
             <br />
             <br />
             <ProductList />
