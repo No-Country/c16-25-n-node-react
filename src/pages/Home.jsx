@@ -1,6 +1,8 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/config';
 // import { AuthProvider } from 'react-firebase-hooks/auth';
+import { Link } from "wouter";
+
 
 import ProductDetail from "../components/ProductDetail"
 import ProductList from "../components/ProductList"
@@ -19,7 +21,12 @@ function Home() {
 
             <br />
             <br />
+            <Link href="/cart">Ir al Carrito</Link>
+
             <ProductList />
+
+            {/* <ShoppingCart cartItems={cart} onRemoveItem={handleRemoveFromCart} /> */}
+
             <h3>Detalles del Producto:</h3>
             <ProductDetail productId="9H1ZbrozIEAmbgHRg3NR" />
         </>

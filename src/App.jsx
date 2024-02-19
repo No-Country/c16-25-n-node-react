@@ -1,21 +1,18 @@
 // import { useState } from 'react'
 import './App.css'
+import { Route } from 'wouter'
+
+import { auth } from './firebase/config';
+import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
 
 import { Navbar } from './components/Navbar'
 import Footer from './components/Footer'
-
-import { Route } from 'wouter'
 import Home from './pages/Home'
 import ProductDetail from './components/ProductDetail'
 import Login from './pages/Login'
 import Register from './pages/Register'
-
-// import { AuthProvider } from 'react-firebase-hooks/auth';
-import { auth } from './firebase/config';
-
-
-import { AuthProvider } from "./context/AuthContext";
-
+import ShoppingCartPage from './pages/ShoppingCartPage'
 
 function App() {
 
@@ -23,7 +20,12 @@ function App() {
     <>
      <AuthProvider auth={auth}>
       <Navbar />
+      <CartProvider>
         <Route path='/' component={Home} />
+        <Route path='/cart' component={ShoppingCartPage} />
+      </CartProvider>
+
+
         <Route path='/product'>
           <ProductDetail productId='9H1ZbrozIEAmbgHRg3NR' />
         </Route>
