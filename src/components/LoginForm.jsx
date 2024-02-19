@@ -2,6 +2,7 @@ import { useState } from 'react';
 // import { useAuth } from "../context/AuthContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase/config';
+import { Redirect } from 'wouter';
 
 
 const LoginForm = () =>  {
@@ -9,6 +10,8 @@ const LoginForm = () =>  {
     email: "",
     password: "",
   });
+  const [redirectToHome, setRedirectToHome] = useState(false);
+
 
   // const { login } = useAuth();
   const login = (email, password) => {
@@ -20,6 +23,8 @@ const LoginForm = () =>  {
     try {
       await login(user.email, user.password);
       console.log("Usuario Logueado");
+      setRedirectToHome(true); // Activar la redirección a la página de inicio
+
 
     } catch (error) {
       console.log(error);
@@ -67,6 +72,8 @@ const LoginForm = () =>  {
           Iniciar Sesión
         </button>
       </form>
+      {redirectToHome && <Redirect to="/" />}
+
     </div>
   );
 };

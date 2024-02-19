@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/config';
 
-
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,11 +15,14 @@ const RegisterForm = () => {
     setPassword(e.target.value);
   };
 
+
+  
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       console.log(email);
+
       setShowSuccessPopup(true)
       // Registro exitoso, puedes redirigir al usuario o mostrar un mensaje de éxito
     } catch (error) {
