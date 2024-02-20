@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-
+import { useContext, useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/config";
+import { CartContext } from "../context/CartContext";
 
 const ProductList = () => {
+  const { addToCart } = useContext(CartContext);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -16,9 +17,12 @@ const ProductList = () => {
       }));
       setProducts(productsData);
     };
-
     fetchProducts();
   }, []);
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
 
   return (
     <div className="flex flex-wrap">
@@ -42,7 +46,10 @@ const ProductList = () => {
               <span className="text-md font-bold text-gray-500">
                 {product.precio}
               </span>
-              <button className="text-xs text-gray-300 bg-blue-700 hover:bg-blue-600 text-xxs py-2 px-2 rounded-2xl">
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="text-xs text-gray-300 bg-blue-700 hover:bg-blue-600 text-xxs py-2 px-2 rounded-2xl"
+              >
                 Comprar
               </button>
             </div>

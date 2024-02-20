@@ -1,7 +1,10 @@
+import Register from "../components/Register"
 
 function Contact() {
     return (
-        <div>Contact</div>
+        <div>Contact
+        <Register/>
+        </div>
     )
 }
 

@@ -2,8 +2,10 @@ import { FaFacebook, FaInstagram, FaTwitter, FaGithub } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="bg-white h-60 w-full md:h-40">
-      <div className="container px-6 mx-auto justify-center">
+    <footer className="bg-white h-40 bottom-0 w-full">
+      <div className="container px-6 py-8 mx-auto justify-center">
+    {/*<footer className="bg-white h-60 w-full md:h-40">
+      <div className="container px-6 mx-auto justify-center">*/}
         <div className="flex flex-col items-center text-center">
           <p className="max-w-md mx-auto mt-4 text-black ">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
