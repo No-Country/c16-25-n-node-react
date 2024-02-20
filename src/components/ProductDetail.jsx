@@ -4,6 +4,7 @@ import { db } from "../firebase/config";
 
 
 
+// eslint-disable-next-line react/prop-types
 const ProductDetail = ({productId}) => {
     
     const [product, setProduct] = useState(null);
