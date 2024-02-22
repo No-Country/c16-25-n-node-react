@@ -1,11 +1,23 @@
-import { FaFacebook, FaInstagram, FaTwitter, FaGithub } from "react-icons/fa";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
+import ContactInfo from "./footer/ContactInfo";
+import PayMethods from "./footer/PayMethods";
+
 
 function Footer() {
   return (
-    <footer className="bg-white h-40 bottom-0 w-full">
+    <>
+      <footer className="bg-[#430199] w-full  px-16 py-5">
+        <div className="flex justify-between">
+          <ContactInfo className='flex flex-col' />
+          <div className="">
+            <p className="font-semibold text-sm">¡BIENVENIDOS!</p>
+            <p className="text-sm">Somos una tienda de productos geek <br /> para la decoración del hogar.</p>
+            <div className="flex justify-center my-2">
+              <FaInstagram size='1.2em' className="mx-1" />
+              <FaFacebook size='1.2em' className="mx-1" />
+            </div>
+    {/*<footer className="bg-white h-40 bottom-0 w-full">
       <div className="container px-6 py-8 mx-auto justify-center">
-    {/*<footer className="bg-white h-60 w-full md:h-40">
-      <div className="container px-6 mx-auto justify-center">*/}
         <div className="flex flex-col items-center text-center">
           <p className="max-w-md mx-auto mt-4 text-black ">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
@@ -22,11 +34,12 @@ function Footer() {
 
             <FaTwitter href="#" className="text-2xl mx-2  text-black transition-colors duration-300 cursor-pointer" aria-label="Twitter" />
 
-            <FaGithub href="#" className="text-2xl mx-2 text-black transition-colors duration-300 cursor-pointer" aria-label="Github" />
+            <FaGithub href="#" className="text-2xl mx-2 text-black transition-colors duration-300 cursor-pointer" aria-label="Github" />*/}
           </div>
+          <PayMethods />
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   )
 }
 
