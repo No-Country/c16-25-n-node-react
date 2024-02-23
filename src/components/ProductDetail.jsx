@@ -1,6 +1,6 @@
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
-import { useParams } from "wouter";
+import { useParams, Link } from "wouter";
 
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/CartContext";
@@ -79,18 +79,22 @@ const ProductDetail = () => {
             <div className="flex-grow h-0.5 bg-purple-700"></div>
 
             <div className="flex flex-col gap-4 mt-6">
+            <Link href="/cart">
               <button
                 onClick={() => handleAddToCart(product)}
                 className="bg-blue-800 w-full h-8 mx-auto p-0 text-white  text-md font-bold rounded-lg"
               >
                 Comprar
               </button>
+              </Link>
+              <Link href="/">
               <button
                 onClick={() => handleAddToCart(product)}
                 className="bg-gray-100 w-full h-8 mx-auto p-0 text-black text-md font-bold rounded-lg"
               >
                 Ver mas productos
               </button>
+              </Link>
             </div>
             </div>
           </div>

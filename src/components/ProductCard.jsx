@@ -4,7 +4,6 @@ import { db } from "../firebase/config";
 import { CartContext } from "../context/CartContext";
 import { Link } from "wouter";
 
-
 import velador from "../assets/velador.png";
 
 const ProductCard = () => {
@@ -27,18 +26,27 @@ const ProductCard = () => {
   const handleAddToCart = (product) => {
     addToCart(product);
   };
+  
+  // const getImageURL = async (imageName) => {
+  //   const storageRef = storage.ref();
+  //   const imageRef = storageRef.child(imageName);
+  //   const downloadURL = await imageRef.getDownloadURL();
+  //   return downloadURL;
+  // };
 
   return (
     <>
       {products.map((product) => (
         <div
           key={product.id}
-          className=" bg-gray-200 w-[190px] h-64 shadow-lg flex flex-col items-center pt-6 pb-1 px-4 rounded-3xl border border-purple-600 overflow-hidden"
+          className=" justify-between bg-gray-200 w-[200px] h-72 shadow-lg flex flex-col pt-6 pb-1 px-4 rounded-3xl border border-purple-600 overflow-hidden"
         >
           <img
             src={velador}
             alt="IMAGE11627"
-            className="w-full h-full rounded-3xl border border-purple-600"
+            // src={getImageURL(product.imagen)}
+            // alt={product.imagen}
+            className="w-full h-2/3 rounded-3xl border border-purple-600"
           />
           <div className="p-1 px-0 text-center text-xs font-bold">
             <h3 className="font-poppins">
