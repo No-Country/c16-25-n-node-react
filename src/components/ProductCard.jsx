@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { CartContext } from "../context/CartContext";
+import { Link } from "wouter";
+
 
 import velador from "../assets/velador.png";
 
@@ -48,9 +50,11 @@ const ProductCard = () => {
               {/* $30,00 */}
             </h3>
             <div className="flex mt-2 justify-between">
+            <Link href={`/${product.id}/ProductDetail`}>
               <button className="bg-purple-500 w-16 h-6 p-0 text-black text-center text-auto font-bold rounded-lg">
                 Ver más
               </button>
+              </Link>
               <button
                 onClick={() => handleAddToCart(product)}
                 className="bg-purple-500 w-16 h-6 p-0 text-black text-center text-xs font-bold rounded-lg"

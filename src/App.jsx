@@ -23,12 +23,12 @@ function App() {
       <CartProvider>
         <Route path='/' component={Home} />
         <Route path='/cart' component={ShoppingCartPage} />
+
+
+        <Route path='/:id/ProductDetail' component={ProductDetail} />
       </CartProvider>
-
-
-        <Route path='/product'>
-          <ProductDetail productId='9H1ZbrozIEAmbgHRg3NR' />
-        </Route>
+          {/* <ProductDetail productId='9H1ZbrozIEAmbgHRg3NR' /> */}
+        {/* </Route> */}
         <Route path='/login' component={Login}/>
         <Route path='/register' component={Register}/>
       <Footer />
