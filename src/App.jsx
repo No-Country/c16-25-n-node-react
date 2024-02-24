@@ -14,52 +14,26 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import ShoppingCartPage from './pages/ShoppingCartPage'
 
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "./firebase/config";
-import { useEffect, useState } from 'react';
-
 function App() {
-
-  const [products, setProducts] = useState([]);
-  const [searchText, setSearchText] = useState('')
-  const [category, setCategory] =useState('Todas')
-  
-  
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const productsRef = collection(db, "products");
-      const querySnapshot = await getDocs(productsRef);
-      const productsData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setProducts(productsData);
-    };
-    fetchProducts();
-  }, []);
-
-
 
   return (
     <>
-      <AuthProvider auth={auth}>
-        <Navbar 
-          setSearchText={setSearchText}
-          products={products}
-          setCategory={setCategory}
-        />
-        <CartProvider>
-          <Route path='/' 
-          component = {()=><Home products={products} searchText={searchText} category={category}/>}   />
-          <Route path='/cart' component={ShoppingCartPage} />
-        </CartProvider>
-        <Route path='/product'>
-          <ProductDetail productId='9H1ZbrozIEAmbgHRg3NR' />
-        </Route>
-        <Route path='/login' component={Login} />
-        <Route path='/register' component={Register} />
-        <Footer />
+     <AuthProvider auth={auth}>
+      <Navbar />
+      <CartProvider>
+        <Route path='/' component={Home} />
+        <Route path='/cart' component={ShoppingCartPage} />
+
+
+        <Route path='/:id/ProductDetail' component={ProductDetail} />
+      </CartProvider>
+          {/* <ProductDetail productId='9H1ZbrozIEAmbgHRg3NR' /> */}
+        {/* </Route> */}
+        <Route path='/login' component={Login}/>
+        <Route path='/register' component={Register}/>
+      <Footer />
       </AuthProvider>
+
     </>
   )
 }
