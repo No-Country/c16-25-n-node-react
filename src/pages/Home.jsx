@@ -4,10 +4,11 @@ import { auth } from '../firebase/config';
 import { Link } from "wouter";
 
 
-import ProductDetail from "../components/ProductDetail"
 import ProductList from "../components/ProductList"
 
-function Home() {
+function Home({products, searchText, category}) {//props para filtrado y busqueda
+    
+
     const [user] = useAuthState(auth); // Obtén el estado de autenticación actual
 
     return (
@@ -23,12 +24,12 @@ function Home() {
             <br />
             <Link href="/cart">Ir al Carrito</Link>
 
-            <ProductList />
+            <ProductList products={products} searchText={searchText} category={category} />
 
             {/* <ShoppingCart cartItems={cart} onRemoveItem={handleRemoveFromCart} /> */}
 
-            <h3>Detalles del Producto:</h3>
-            <ProductDetail productId="9H1ZbrozIEAmbgHRg3NR" />
+            {/* <h3>Detalles del Producto:</h3>
+            <ProductDetail productId="9H1ZbrozIEAmbgHRg3NR" /> */}
         </>
     )
 }
