@@ -12,8 +12,7 @@ const ProductList = ({ products, searchText, category }) => {//props para filtra
   };
 
   //Busqueda
-  //debug
-  console.log(products);
+
   //productos filtrados
   const [filteredProducts, setFilteredProducts] = useState(products)
   //useEffect busqueda
@@ -48,7 +47,7 @@ const ProductList = ({ products, searchText, category }) => {//props para filtra
   useEffect(() => {
 
     const filterProducts = () => {
-      let newFilteredProducts = products
+      let newFilteredProducts = [].concat(filteredProducts)
       if (category)
       {
         categorias.forEach((cat) => {
@@ -62,9 +61,9 @@ const ProductList = ({ products, searchText, category }) => {//props para filtra
     }
     filterProducts()
 
-    return () => {
-      setFilteredProducts([].concat(products))
-    }
+    // return () => {
+    //   setFilteredProducts([].concat(products))
+    // }
   }, [category, products]);
 
 
