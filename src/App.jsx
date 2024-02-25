@@ -12,7 +12,7 @@ import Home from './pages/Home'
 import ProductDetail from './components/ProductDetail'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import ShoppingCartPage from './pages/ShoppingCartPage'
+import ShoppingCart from './pages/ShoppingCart'
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
       <Navbar />
       <CartProvider>
         <Route path='/' component={Home} />
-        <Route path='/cart' component={ShoppingCartPage} />
+        <Route path='/cart' component={ShoppingCart} />
       </CartProvider>
 
 
