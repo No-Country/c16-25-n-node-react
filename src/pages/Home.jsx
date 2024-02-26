@@ -11,6 +11,7 @@ function Home({products, searchText, category}) {//props para filtrado y busqued
 
     const [user] = useAuthState(auth); // Obtén el estado de autenticación actual
 
+    console.log('Home se renderiza con: ', {products, searchText})
     return (
         <>
             <h1>Geek E-commerce</h1>

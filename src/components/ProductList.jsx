@@ -11,61 +11,8 @@ const ProductList = ({ products, searchText, category }) => {//props para filtra
     addToCart(product);
   };
 
-  //Busqueda
-
-  //productos filtrados
-  const [filteredProducts, setFilteredProducts] = useState(products)
-  //useEffect busqueda
-  useEffect(() => {
-
-    const searchProducts = () => {
-      let newFilteredProducts = products
-      if (searchText && searchText.trim() !== '')
-      {
-        newFilteredProducts = products.filter((p) => {
-          if (searchText && p.descripcion.toString().toLowerCase().indexOf(searchText) > 1
-            || p.nombre.toString().toLowerCase().indexOf(searchText) > 1)
-          {
-            return p
-          }
-        })
-      }
-      setFilteredProducts(newFilteredProducts)
-    }
-    searchProducts()
-
-    return () => {
-      setFilteredProducts([].concat(products))
-    }
-  }, [searchText, products]);
-
-  //filtrado por categoria:
-  const categorias = [
-    'Cocina',
-    'Muebles'
-  ]
-  useEffect(() => {
-
-    const filterProducts = () => {
-      let newFilteredProducts = [].concat(filteredProducts)
-      if (category)
-      {
-        categorias.forEach((cat) => {
-          if (category.toString().trim() === cat){
-            newFilteredProducts = products.filter((p) => p.categoria === cat)
-          }
-        })
-
-      }
-      setFilteredProducts(newFilteredProducts)
-    }
-    filterProducts()
-
-    // return () => {
-    //   setFilteredProducts([].concat(products))
-    // }
-  }, [category, products]);
-
+  console.log('product list se renderiza con: ', {products, searchText})
+  
 
   return (
     products ?

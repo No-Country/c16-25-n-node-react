@@ -5,9 +5,9 @@ import './index.css'
 import { AuthProvider } from '../src/context/AuthContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <AuthProvider>
-    <App />
-    </AuthProvider>
-  </React.StrictMode>,
+      <App />
+    </AuthProvider>,
+   //</React.StrictMode>
 )

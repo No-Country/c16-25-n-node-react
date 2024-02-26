@@ -22,9 +22,9 @@ function App() {
 
   const [products, setProducts] = useState([]);
   const [searchText, setSearchText] = useState('')
-  const [category, setCategory] =useState('Todas')
+  const [category, setCategory] = useState('Todas')
   
-  
+  console.log('App se renderiza con:',{products, searchText})
   useEffect(() => {
     const fetchProducts = async () => {
       const productsRef = collection(db, "products");
