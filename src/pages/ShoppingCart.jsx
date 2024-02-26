@@ -69,10 +69,10 @@ const ShoppingCart = () => {
 
       <Link href="/">Ir al Home</Link>
         <div className="m-2 p-2 flex items-end">
-          <h1 className="mr-6 text-purple-700 text-3xl">
+          <h1 className="mr-6 text-[#430199] text-3xl">
             Carrito de Compras
           </h1>
-          <div className="flex-grow h-0.5 bg-purple-700"></div>
+          <div className="flex-grow h-0.5 bg-[#430199]"></div>
         </div>
       <div className="p-4 w-2/3 mx-auto rounded-xl">
         {cart.length === 0 ? (
@@ -109,7 +109,7 @@ const ShoppingCart = () => {
           </div>
         )}
         <div className="flex flex-col w-3/4 mx-auto my-6">
-          <div className="flex-grow h-0.5 bg-purple-700"></div>
+          <div className="flex-grow h-0.5 bg-[#430199]"></div>
           <div className="flex justify-between ">
             <h3 className="my-2">
               {/* $30,00 */}
@@ -117,7 +117,7 @@ const ShoppingCart = () => {
             </h3>
             <h3 className="p-2">{/* {product.precio} */}</h3>
           </div>
-          <div className="flex-grow h-0.5 bg-purple-700"></div>
+          <div className="flex-grow h-0.5 bg-[#430199]"></div>
 
           <div className="flex flex-col gap-4 mt-6">
             <Link href="/cart">
@@ -139,7 +139,7 @@ const ShoppingCart = () => {
           </div>
         </div>
         <div className="bg-gray-100 flex flex-col shadow-lg mb-3 px-14 pt-6 pb-2 text-left rounded-lg">
-          <h2 className="mr-6 text-purple-700 text-xs ">
+          <h2 className="mr-6 text-[#430199] text-xs ">
             Tu código postal
           </h2>
           <div>
@@ -149,7 +149,7 @@ const ShoppingCart = () => {
         </div>
         </div> 
         <div className="bg-gray-100 jusitfy-between shadow-lg mb-2 px-14 pt-6 pb-2 flex flex-col text-left rounded-lg">
-        <h2 className="mr-6 text-purple-700 text-xs ">
+        <h2 className="mr-6 text-[#430199] text-xs ">
             Datos de facturación
         </h2>
         <div className="flex justify-between py-1">
@@ -173,7 +173,7 @@ const ShoppingCart = () => {
         placeholder="Correo Electronico"
         className="py-1 w-2/3 h-8" type="text" />
         </div>
-        <h2 className="mt-4 text-purple-700 text-xs ">
+        <h2 className="mt-4 text-[#430199] text-xs ">
             Domicilio
         </h2>
         <div className="flex justify-between py-1">
@@ -189,8 +189,8 @@ const ShoppingCart = () => {
       </div>
 
       <div className="m-2 p-2 flex items-end">
-        <h1 className="mr-6 text-purple-700 text-3xl">Historial de Compras</h1>
-        <div className="flex-grow h-0.5 bg-purple-700"></div>
+        <h1 className="mr-6 text-[#430199] text-3xl">Historial de Compras</h1>
+        <div className="flex-grow h-0.5 bg-[#430199]"></div>
       </div>
 
       <div className="flex flex-wrap">

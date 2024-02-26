@@ -6,7 +6,7 @@ import PayMethods from "./footer/PayMethods";
 function Footer() {
   return (
     <>
-      <footer className="bg-[#430199] w-full  px-16 py-5">
+      <footer className="bg-[#430199] w-full text-white px-16 py-5">
         <div className="flex justify-between">
           <ContactInfo className='flex flex-col' />
           <div className="">
