@@ -23,12 +23,9 @@ function App() {
       <CartProvider>
         <Route path='/' component={Home} />
         <Route path='/cart' component={ShoppingCart} />
+        <Route path="/product/:id" component={ProductDetail} />
       </CartProvider>
 
-
-        <Route path='/product'>
-          <ProductDetail productId='9H1ZbrozIEAmbgHRg3NR' />
-        </Route>
         <Route path='/login' component={Login}/>
         <Route path='/register' component={Register}/>
       <Footer />
