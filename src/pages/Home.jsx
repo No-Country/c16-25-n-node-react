@@ -1,11 +1,13 @@
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../firebase/config';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/config";
 import { Link } from "wouter";
 
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/config";
 
-import ProductList from "../components/ProductList"
+import ProductList from "../components/ProductList";
+import Carousel from "../components/Carousel";
+import Features from "../components/Features";
 import { useContext, useEffect, useState } from 'react';
 import { ProductsContext } from '../context/ProductsContext';
 
@@ -30,21 +32,31 @@ function Home() {
   }, []);
   return (
     <>
+      <Carousel />
+
+      <div className="m-2 p-2 flex items-end">
+        <h1 className="mr-6 text-[#430199] text-3xl">Productos destacados</h1>
+        <div className="flex-grow h-0.5 bg-[#430199]"></div>
+      </div>
+
+      <ProductList />
+
+    <Features />
+
       <h1>Geek E-commerce</h1>
-      <h2>Bienvenido:
+      <h2>
+        Bienvenido:
         {user && <p>Email: {user.email}</p>}
         {/* Muestra el email del usuario si está autenticado */}
       </h2>
       <button onClick={() => auth.signOut()}>Cerrar sesión</button>
+
       <br />
       <br />
       <Link href="/cart">Ir al Carrito</Link>
 
-      <ProductList />
-
     </>
-  )
+  );
 }
 
-
-export default Home
+export default Home;
