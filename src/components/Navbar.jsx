@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaRegUser } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { FaRobot, FaJedi, FaGamepad, FaShoppingCart } from "react-icons/fa";
 import { Link } from 'wouter';
 import SearchInput from './SearchInput';
 import Select from 'react-select';
+import { ProductsContext } from "../context/ProductsContext";
 
 
 
-export const Navbar = ({ setSearchText, products, setCategory }) => {
+export const Navbar = () => {
+  const [searchText, setSearchText] = useState('')
+  const [category, setCategory] = useState('Todas')
 
+  const { filterBySearch, filterByCategory } = useContext(ProductsContext)
 
   const categoryOptions =
     [
@@ -17,8 +21,30 @@ export const Navbar = ({ setSearchText, products, setCategory }) => {
       { label: 'Cocina', value: 'Cocina' },
       { label: 'Muebles', value: 'Muebles' },
     ];
-  const onChange = (selectedOption) => {
+
+  useEffect(() => {
+    filterByCategory(category)
+    // return(
+    //   filterByCategory('Todas')
+    // )
+  }, [category])
+
+  useEffect(() => {
+    filterBySearch(category, searchText)
+    // return(
+    //   filterByCategory('Todas')
+    // )
+  }, [searchText,category])
+  
+  const onChangeSelect = (selectedOption) => {
     setCategory(selectedOption.value)
+  }
+
+  const handleChangeInput = (e) => {
+    // setTimeout(() => {
+    const target = e.target
+    setSearchText(target.value)
+    // }, 500)
   }
 
   return (
@@ -34,13 +60,14 @@ export const Navbar = ({ setSearchText, products, setCategory }) => {
         <span>Cat 1</span>
         <span>Cat 2</span>
         <span>Cat 3</span>
-        
+
         {/* Select de categorias para probar el filtrado */}
         <div>
           <Select
             options={categoryOptions}
-            onChange={onChange}
-            placeholder='Categoria' />
+            onChange={onChangeSelect}
+            placeholder='Todas'
+          />
         </div>
 
       </div>
@@ -51,12 +78,15 @@ export const Navbar = ({ setSearchText, products, setCategory }) => {
           </span>
 
 
-          <SearchInput
-            className='mx-3 bg-white outline-none'
+          {/* <SearchInput
+            
             placeholder="Search..."
             type="text"
-            setSearchText={setSearchText} 
-          />
+            
+            
+             
+          /> */}
+          <input className='mx-3 bg-white outline-none' placeholder="Search..." type="text" onChange={handleChangeInput} />
 
         </div>
         <div className='flex justify-between'>

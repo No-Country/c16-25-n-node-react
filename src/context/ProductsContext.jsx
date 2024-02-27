@@ -1,26 +1,52 @@
 import { createContext, useState } from "react";
 
-const CartContext = createContext();
+const ProductsContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  const [allProducts, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([])
 
-  const handleFilterByCategory = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
+  const handleInitializeProducts = (newProducts) => {
+    const newProductsCopy = [].concat(newProducts)
+    setProducts(newProductsCopy)
+    setFilteredProducts(newProductsCopy)
+  }
+
+  const handleFilterByCategory = (category) => {
+    let newFilteredProducts = [].concat(allProducts)
+    if (category && category !== "Todas") {
+      newFilteredProducts = newFilteredProducts.filter(
+        (p) => p.categoria === category
+      )
+    }
+    const nwp = newFilteredProducts
+    setFilteredProducts(nwp)
   };
 
-  const handleRemoveFromCart = (productId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+  const handleFilterBySearch = (category,searchText) => {
+    let newFilteredProducts
+    newFilteredProducts = [...allProducts]
+    if(category && category !== 'Todas'){
+      newFilteredProducts = newFilteredProducts.filter((p) => p.categoria === category);
+    }
+    if (searchText && searchText.trim() !== '') {
+      newFilteredProducts = newFilteredProducts.filter((p) => {
+        p.nombre.toLowerCase().includes(searchText.toLowerCase()) ||
+          p.descripcion.toLowerCase().includes(searchText.toLowerCase())
+      })
+    }
+    const nwp = newFilteredProducts
+    setFilteredProducts(nwp)
   };
 
   return (
-    <CartContext.Provider
-      value={{ cart, addToCart: handleAddToCart, removeFromCart: handleRemoveFromCart }}
+    <ProductsContext.Provider
+      value={{ allProducts, filteredProducts, initializeProducts: handleInitializeProducts, filterBySearch: handleFilterBySearch, filterByCategory: handleFilterByCategory }}
     >
       {children}
-    </CartContext.Provider>
+    </ProductsContext.Provider>
   );
 };
 
-export { CartContext, CartProvider };
+export { ProductsContext, ProductsProvider };
