@@ -3,7 +3,6 @@ import { FaRegUser } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { FaRobot, FaJedi, FaGamepad, FaShoppingCart } from "react-icons/fa";
 import { Link } from 'wouter';
-import SearchInput from './SearchInput';
 import Select from 'react-select';
 import { ProductsContext } from "../context/ProductsContext";
 

@@ -47,7 +47,6 @@ const ProductCard = () => {
               {product.precio}
               {/* $30,00 */}
             </h3>
-            <h3>{product.categoria}</h3>
             <div className="flex mt-2 justify-between">
             <Link href={`/${product.id}/ProductDetail`}>
               <button className="bg-purple-500 w-16 h-6 p-0 text-black text-center text-auto font-bold rounded-lg">
