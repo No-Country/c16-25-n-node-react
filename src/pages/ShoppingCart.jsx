@@ -87,12 +87,16 @@ const ShoppingCart = () => {
                 <img
             src={velador}
             alt="IMAGE11627"
-            className="w-1/3 h-full rounded-3xl border border-purple-600"
+            className="w-1/5 h-full rounded-3xl border border-purple-600"
           />
-          <div className="w-1/3 p-1 px-0 text-center text-xs">
+          <div className="w-1/3 p-1 px-0 text-center text-lg">
             <h3>
             {item.nombre}
             </h3>
+            <h2>
+            {item.descripcion}
+
+            </h2>
             <h3 className="font-poppins font-bold">
             {item.precio}
               {/* Lámpara I Mario Bros - Rosado */}
