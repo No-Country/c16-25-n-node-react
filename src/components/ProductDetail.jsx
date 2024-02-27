@@ -9,7 +9,7 @@ import velador from "../assets/velador.png";
 
 const ProductDetail = () => {
   const { addToCart } = useContext(CartContext);
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState([null]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -20,6 +20,7 @@ const ProductDetail = () => {
         setProduct({ id: productSnapshot.id, ...productSnapshot.data() });
       } else {
         console.log("El producto no existe");
+        // Realizar alguna acción adicional, como mostrar un mensaje de error o redirigir al usuario
       }
     };
     fetchProduct();
@@ -32,6 +33,7 @@ const ProductDetail = () => {
   if (!product) {
     return <div>Cargando...</div>;
   }
+  
 
   return (
     <>
@@ -52,7 +54,7 @@ const ProductDetail = () => {
           <img
             src={velador}
             alt="IMAGE11627"
-            className="w-1/3 h-full rounded-3xl border border-purple-600"
+            className="w-2/5 h-full rounded-3xl border border-purple-600"
           />
           <div className="w-1/3 p-1 px-0 text-center text-xs">
             <h3>
