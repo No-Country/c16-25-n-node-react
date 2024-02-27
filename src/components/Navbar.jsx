@@ -20,31 +20,27 @@ export const Navbar = () => {
       { label: 'Todas', value: 'Todas' },
       { label: 'Cocina', value: 'Cocina' },
       { label: 'Muebles', value: 'Muebles' },
+      { label: 'Otro', value: 'Otro' }
     ];
 
   useEffect(() => {
     filterByCategory(category)
-    // return(
-    //   filterByCategory('Todas')
-    // )
   }, [category])
 
   useEffect(() => {
-    filterBySearch(category, searchText)
-    // return(
-    //   filterByCategory('Todas')
-    // )
-  }, [searchText,category])
-  
+    setTimeout(() => filterBySearch(category, searchText), 100)
+
+  }, [searchText, category])
+
   const onChangeSelect = (selectedOption) => {
     setCategory(selectedOption.value)
   }
 
   const handleChangeInput = (e) => {
-    // setTimeout(() => {
-    const target = e.target
-    setSearchText(target.value)
-    // }, 500)
+    setTimeout(() => {
+      const target = e.target
+      setSearchText(target.value)
+    }, 300)
   }
 
   return (

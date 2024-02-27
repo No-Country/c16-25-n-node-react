@@ -20,8 +20,7 @@ const ProductsProvider = ({ children }) => {
         (p) => p.categoria === category
       )
     }
-    const nwp = newFilteredProducts
-    setFilteredProducts(nwp)
+    setFilteredProducts(newFilteredProducts)
   };
 
   const handleFilterBySearch = (category,searchText) => {
@@ -32,12 +31,11 @@ const ProductsProvider = ({ children }) => {
     }
     if (searchText && searchText.trim() !== '') {
       newFilteredProducts = newFilteredProducts.filter((p) => {
-        p.nombre.toLowerCase().includes(searchText.toLowerCase()) ||
-          p.descripcion.toLowerCase().includes(searchText.toLowerCase())
+        return (p.nombre.toLowerCase().includes(searchText.toLowerCase()) ||
+          p.descripcion.toLowerCase().includes(searchText.toLowerCase()))
       })
     }
-    const nwp = newFilteredProducts
-    setFilteredProducts(nwp)
+    setFilteredProducts(newFilteredProducts)
   };
 
   return (

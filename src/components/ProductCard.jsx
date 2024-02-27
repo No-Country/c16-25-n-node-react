@@ -11,7 +11,7 @@ const ProductCard = () => {
   const { addToCart } = useContext(CartContext);
   const {allProducts, filteredProducts } = useContext(ProductsContext);
   
-  console.log('ProductCard render with ',{allProducts, filteredProducts})
+  console.log('ProductCard rendered')
 
   const handleAddToCart = (product) => {
     addToCart(product);
@@ -26,7 +26,7 @@ const ProductCard = () => {
 
   return (
     <>
-      {filteredProducts ? filteredProducts.map((product) => (
+      {filteredProducts.length !== 0 ? filteredProducts.map((product) => (
         <div
           key={product.id}
           className=" justify-between bg-gray-200 w-[200px] h-72 shadow-lg flex flex-col pt-6 pb-1 px-4 rounded-3xl border border-purple-600 overflow-hidden"

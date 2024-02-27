@@ -14,8 +14,6 @@ function Home() {
   const [products, setProducts] = useState([]);
   const { initializeProducts } = useContext(ProductsContext)
 
-  console.log('Home render with ', { products })
-
   useEffect(() => {
     const fetchProducts = async () => {
       const productsRef = collection(db, "products");
