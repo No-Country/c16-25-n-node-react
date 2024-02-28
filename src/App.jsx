@@ -5,6 +5,7 @@ import { Route } from 'wouter'
 import { auth } from './firebase/config';
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
+import { ProductsProvider } from './context/ProductsContext';
 
 import { Navbar } from './components/Navbar'
 import Footer from './components/Footer'
@@ -18,19 +19,22 @@ function App() {
 
   return (
     <>
-     <AuthProvider auth={auth}>
-      <Navbar />
-      <CartProvider>
-        <Route path='/' component={Home} />
-        <Route path='/cart' component={ShoppingCart} />
-        <Route path="/product/:id" component={ProductDetail} />
-      </CartProvider>
+      <AuthProvider auth={auth}>
+        <ProductsProvider>
+          <Navbar />
+          <CartProvider>
+            <Route path='/' component={Home} />
+            <Route path='/cart' component={ShoppingCart} />
+            <Route path="/product/:id" component={ProductDetail} />
+          </CartProvider >
+        </ProductsProvider>
 
-        <Route path='/login' component={Login}/>
-        <Route path='/register' component={Register}/>
-      <Footer />
-      </AuthProvider>
+        
+        <Route path='/login' component={Login} />
+        <Route path='/register' component={Register} />
+        <Footer />
 
+      </AuthProvider >
     </>
   )
 }
