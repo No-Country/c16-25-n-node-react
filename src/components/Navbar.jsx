@@ -43,7 +43,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="flex flex-col items-center text-[#430199] w-screen h-36 bg-white">
+    <nav className="flex flex-col items-center text-[#430199] h-36 bg-white"> {/* w-dvw */}
       <div className="flex flex-row justify-between w-10/12 my-6">
         <Link href="/">
           <img src={logo} className="h-12" />
