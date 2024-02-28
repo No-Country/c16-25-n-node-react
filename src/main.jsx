@@ -7,7 +7,7 @@ import { AuthProvider } from '../../c16-25-n-node-react/src/context/AuthContext.
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-    <App />
+      <App />
     </AuthProvider>
   </React.StrictMode>,
 )
