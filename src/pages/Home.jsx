@@ -53,7 +53,6 @@ function Home() {
 
       <br />
       <br />
-      <Link href="/cart">Ir al Carrito</Link>
 
     </>
   );
