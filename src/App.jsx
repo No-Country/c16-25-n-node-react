@@ -14,11 +14,13 @@ import ProductDetail from './components/ProductDetail'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import ShoppingCart from './pages/ShoppingCart'
+import OrderHistory from './pages/OrderHistory'
 
 function App() {
 
   return (
     <>
+
       <AuthProvider auth={auth}>
         <ProductsProvider>
           <Navbar />
@@ -26,10 +28,10 @@ function App() {
             <Route path='/' component={Home} />
             <Route path='/cart' component={ShoppingCart} />
             <Route path="/product/:id" component={ProductDetail} />
+            <Route path="/orderhistory" component={OrderHistory} />
           </CartProvider >
         </ProductsProvider>
 
-        
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
         <Footer />
