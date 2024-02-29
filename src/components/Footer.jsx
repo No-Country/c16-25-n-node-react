@@ -6,15 +6,19 @@ import PayMethods from "./footer/PayMethods";
 function Footer() {
   return (
     <>
-      <footer className="bg-[#430199] w-full text-white md:px-16 px-8 py-5 ">
+      <footer className="bg-[#430199] w-full text-white  px-8 py-5 ">
         <div className="flex justify-between md:flex-row flex-col">
-          <ContactInfo className='flex flex-col' />
-          <div className="md:m-0 mb-3">
+          <ContactInfo />
+          <div className="md:m-0 mb-3 md:w-1/4 w-auto m-auto self-center">
             <p className="font-semibold text-sm">¡BIENVENIDOS!</p>
             <p className="text-sm">Somos una tienda de productos geek <br /> para la decoración del hogar.</p>
             <div className="flex justify-center my-2">
-              <FaInstagram size='1.2em' className="mx-1" />
-              <FaFacebook size='1.2em' className="mx-1" />
+              <a className='text-white' href="">
+                <FaInstagram size='1.2em' className="mx-1" />
+              </a>
+              <a className='text-white' href=''>
+                <FaFacebook size='1.2em' className="mx-1" />
+              </a>
             </div>
           </div>
           <PayMethods />
