@@ -13,6 +13,7 @@ import ProductDetail from './components/ProductDetail'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import ShoppingCart from './pages/ShoppingCart'
+import OrderHistory from './pages/OrderHistory'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/' component={Home} />
         <Route path='/cart' component={ShoppingCart} />
         <Route path="/product/:id" component={ProductDetail} />
+        <Route path="/orderhistory" component={OrderHistory} />
       </CartProvider>
 
         <Route path='/login' component={Login}/>
