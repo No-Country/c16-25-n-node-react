@@ -30,7 +30,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  
   min-width: 320px;
   min-height: 100vh;
 }
@@ -61,4 +61,16 @@ button:focus-visible {
     color: #430199;
     background-color: #ffffff;
   }
+}
+
+.responsive-features {
+  @apply md:h-20 h-auto justify-center items-center md:flex-row flex-col;
+}
+
+.responsive-features-elements {
+  @apply md:w-1/3 w-2/3 justify-center text-nowrap;
+}
+
+.responsive-features-text {
+  @apply md:w-full w-auto;
 }

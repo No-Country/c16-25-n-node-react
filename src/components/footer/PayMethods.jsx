@@ -6,7 +6,7 @@ function PayMethods() {
   return (
     <div>
       <p className='font-semibold text-sm'>Medios de pago</p>
-      <div className='flex items-center'>
+      <div className='flex items-center justify-center'>
         <span><img className='w-10 h-[1.8em]' src={VisaSvg} alt='visa' /></span>
         <span><img className='w-10 h-[1.3em]' src={MasterCardSvg} alt='mastercard' /></span>
         <span><img className='w-10 h-[2em]' src={MPSvg} alt='mercado pago' /></span>
