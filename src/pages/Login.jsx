@@ -2,7 +2,7 @@ import { useState } from 'react';
 // import { useAuth } from "../context/AuthContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase/config';
-import { Redirect } from 'wouter';
+import { Redirect, Link } from 'wouter';
 
 
 const Login = () =>  {
@@ -36,11 +36,18 @@ const Login = () =>  {
   
 
   return (
-    <div className="flex flex-col items-center mt-8 rounded-lg shadow-lg p-8 w-72">
-      <h2 className="text-2xl font-bold mb-4">Inicio de Sesión</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <>
+    <div className="m-2 p-2 flex items-end">
+    <h1 className="mr-6 text-[#430199] text-3xl">
+      Inicio de sesión
+    </h1>
+    <div className="flex-grow h-0.5 bg-[#430199]"></div>
+  </div>
+
+    <div className="flex flex-col items-center mt-2 rounded-lg shadow-lg p-6 w-72 mx-auto">
+      <form onSubmit={handleSubmit} className="flex flex-col text-left gap-4 mb-2">
         <div>
-          <label htmlFor="email" className="text-sm">
+          <label htmlFor="email" className="text-sm ">
             Email:
           </label>
           <input
@@ -67,14 +74,18 @@ const Login = () =>  {
         </div>
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          className="px-4 py-2 bg-[#430199] text-white rounded-md hover:bg-blue-600"
         >
-          Iniciar Sesión
+          Confirmar
         </button>
       </form>
       {redirectToHome && <Redirect to="/" />}
-
+    <Link href="/register">
+    <span className='text-sm'>No tenés cuenta? Registrate aquí
+    </span>
+    </Link>
     </div>
+    </>
   );
 };
 
