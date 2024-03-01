@@ -1,53 +1,30 @@
 import { useState } from 'react';
-import { Redirect, Link } from 'wouter';
+import { Link } from 'wouter';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../firebase/config';
-import { collection, addDoc } from 'firebase/firestore';
+import { auth } from '../firebase/config';
 
 const Register = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    nombre: '',
-    apellido: '',
-    dni: '',
-    telefono: '',
-    calle: '',
-    numero: '',
-    codigoPostal: ''
-  });
 
-  const handleFormSubmit = async (e) => {
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const { email, password, nombre, apellido, dni, telefono, calle, numero, codigoPostal } = formData;
-
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const uid = userCredential.user.uid;
-
-      const userData = {
-        uid,
-        nombre,
-        apellido,
-        dni,
-        telefono,
-        calle,
-        numero,
-        codigoPostal
-      };
-
-      await addDoc(collection(db, 'users'), userData);
-      setShowSuccessPopup(true);
+      await createUserWithEmailAndPassword(auth, email, password);
+      setShowSuccessPopup(true)
     } catch (error) {
       console.log(error);
     }
   };
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   const closeSuccessPopup = () => {
     setShowSuccessPopup(false);
   };
@@ -61,16 +38,15 @@ const Register = () => {
     <div className="flex-grow h-0.5 bg-[#430199]"></div>
   </div>
   <div className="w-4/5 max-w-2xl mx-auto flex flex-col items-center mt-2 mb-14 rounded-lg shadow-lg p-6 ">
-  <form onSubmit={handleFormSubmit} className="flex flex-col text-left gap-4 mb-2">
+  <form onSubmit={handleRegister} className="flex flex-col text-left gap-4 mb-2">
         <div className='flex flex-col'>
           <label className="text-sm">
             Email:
           </label>
           <input
             type="email"
-            value={formData.email}
-            name="email"
-            onChange={handleInputChange}
+            value={email}
+            onChange={handleEmailChange}
             placeholder="youremail@company.tld"
             className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -81,9 +57,8 @@ const Register = () => {
           </label>
           <input
             type="password"
-            value={formData.password}
-            name="password"
-            onChange={handleInputChange}
+            value={password}
+            onChange={handlePasswordChange}
             placeholder="*************"
             className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -97,37 +72,34 @@ const Register = () => {
             placeholder="Nombre" 
             className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="text"
-            name="nombre"
-            value={formData.nombre}
-            onChange={handleInputChange}
-          />
+            name="Nombre"
+            id="Nombre"
+            />
             <input 
             placeholder="Apellido" 
             className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="text"
-            name="apellido"
-            value={formData.apellido}
-            onChange={handleInputChange}
-          />
+            name="Apellido"
+            id="Apellido"
+            />
             </div>
 
           <div>
+            <div>
             <input
             placeholder="DNI" 
             className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="text"
-            name="dni"
-            value={formData.dni}
-            onChange={handleInputChange}
-          />
+            name="DNI"
+            id="DNI"
+            />
             <input
             placeholder="Telefono"
             className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="text"
-            name="telefono"
-            value={formData.telefono}
-            onChange={handleInputChange}
-          />
+            name="Telefono"
+            id="Telefono"            />
+            </div>
           </div>
           <div className="">
             <h2 className="mt-4 text-[#430199] text-sm ">
@@ -138,9 +110,8 @@ const Register = () => {
                 placeholder="Calle"
                 className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
-                name="calle"
-                value={formData.calle}
-                onChange={handleInputChange}
+                name="Calle"
+                id="Calle"
               />
             </div>
             <div className="">
@@ -149,8 +120,7 @@ const Register = () => {
                 className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 name="numero"
-                value={formData.numero}
-                onChange={handleInputChange}
+                id="numero"
               />
             </div>
             <div className="">
@@ -158,9 +128,8 @@ const Register = () => {
                 placeholder="Codigo Postal"
                 className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
-                name="codigoPostal"
-                value={formData.codigoPostal}
-                onChange={handleInputChange}
+                name="Codigo Postal"
+                id="Codigo Postal"
               />
             </div>
           </div>
@@ -181,7 +150,7 @@ const Register = () => {
             <button onClick={closeSuccessPopup}>Cerrar</button>
           </div>
         </div>
-      ) && <Redirect to="/" /> }
+      )}
     <Link href="/login">
     <span className='text-sm'>¿Ya tenés cuenta? Iniciar Sesión
     </span>
