@@ -49,7 +49,7 @@ export const Navbar = () => {
           <img src={logo} className="h-12" />
         </Link>
 
-        <div className="flex items-center justify-around w-1/12">
+        <div className="flex items-center justify-around w-[50px] h-[50px]">
           <Link href="/login">
             <img src={userIcon} className="" />
           </Link>
