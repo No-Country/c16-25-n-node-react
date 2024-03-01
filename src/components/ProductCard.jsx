@@ -13,8 +13,8 @@ const ProductCard = () => {
   
   console.log('ProductCard rendered')
 
-  const handleAddToCart = (product) => {
-    addToCart(product);
+  const handleAddToCart = (product,quantity) => {
+    addToCart(product,quantity);
   };
   
   // const getImageURL = async (imageName) => {
@@ -39,11 +39,11 @@ const ProductCard = () => {
             className="w-full h-2/3 rounded-3xl border border-purple-600"
           />
           <div className="p-1 px-0 text-center text-xs font-bold text-black">
-            <h3 className="font-poppins">
+            <h3 className="text-[#000000]">
               {product.descripcion}
               {/* Lámpara I Mario Bros - Rosado */}
             </h3>
-            <h3 className="  ">
+            <h3 className="text-[#000000]">
               {product.precio}
               {/* $30,00 */}
             </h3>
@@ -55,7 +55,7 @@ const ProductCard = () => {
               </Link>
               <Link href={`/cart`}>
               <button
-                onClick={() => handleAddToCart(product)}
+                onClick={() => handleAddToCart(product,1)}
                 className="bg-purple-500 w-16 h-6 p-0 text-black text-center text-xs font-bold rounded-lg"
               >
                 Comprar
