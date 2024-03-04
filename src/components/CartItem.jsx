@@ -7,7 +7,7 @@ export const CartItem = ({ item }) => {
     const { nombre, precio, quantity } = item
 
     const [count, setCount] = useState(quantity);
-    const { cart, removeFromCart, addToCart } = useContext(CartContext);
+    const { removeFromCart, addToCart } = useContext(CartContext);
 
     const increment = () => {
         setCount(current => current + 1);
@@ -50,9 +50,9 @@ export const CartItem = ({ item }) => {
 
                 <div className=''>
                     <div className='flex items-center p-2 border border-[#7A1AFF] rounded-full justify-around'>
-                        <div className='flex justify-center items-center w-8 h-8 rounded-full bg-[#7A1AFF] text-white font-bold cursor-pointer' onClick={decrement}> - </div>
+                        <div className='flex justify-center items-center w-8 h-8 rounded-full bg-[#7A1AFF] text-white font-bold cursor-pointer select-none' onClick={decrement}> - </div>
                         <div className=''>{count}</div>
-                        <div className='flex justify-center items-center w-8 h-8 rounded-full bg-[#7A1AFF] text-white font-bold cursor-pointer' onClick={() => increment()}> + </div>
+                        <div className='flex justify-center items-center w-8 h-8 rounded-full bg-[#7A1AFF] text-white font-bold cursor-pointer select-none' onClick={() => increment()}> + </div>
                     </div>
                 </div>
 

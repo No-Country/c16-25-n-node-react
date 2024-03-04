@@ -63,7 +63,6 @@ const ShoppingCart = () => {
     <>
       {user && <p>Email: {user.email}</p>}
 
-      <Link href="/">Ir al Home</Link>
       <div className="m-2 p-2 flex items-end">
         <h1 className="mr-6 text-[#430199] text-3xl">
           Carrito de Compras
@@ -80,34 +79,36 @@ const ShoppingCart = () => {
             ))}
           </div>
         )}
-        <div className="flex flex-col w-3/4 mx-auto my-6">
-          <div className="flex-grow h-0.5 bg-[#430199]"></div>
-          <div className="flex justify-between ">
-            <h3 className="my-2 text-black">
-              SubTotal
-            </h3>
-            <h3 className="p-2 text-black">{cartTotal()}</h3>
-          </div>
-          <div className="flex-grow h-0.5 bg-[#430199]"></div>
-
-          <div className="flex flex-col gap-4 mt-6">
-            <Link href="/cart">
-              <button
-                onClick={handleAddElement}
-                className="bg-blue-800 w-full h-8 mx-auto p-0 text-white  text-md font-bold rounded-lg"
-              >
-                Finalizar Compra
-              </button>
-            </Link>
-            <Link href="/">
-              <button
-                className="bg-gray-100 w-full h-8 mx-auto p-0 text-black text-md font-bold rounded-lg"
-              >
-                Ver mas productos
-              </button>
-            </Link>
-          </div>
+        
+        <div className="flex flex-col w-2/5 mx-auto my-6 text-black font-semibold">
+        <div className="flex-grow h-0.5 bg-purple-700"></div>
+        <div className="flex justify-between ">
+          <h3 className="my-2">
+            Subtotal
+          </h3>
+          <h3 className="p-2">{`$ ${cartTotal()},00`}</h3>
         </div>
+        <div className="flex-grow h-0.5 bg-purple-700 mb-6"></div>
+
+        <div className="flex flex-col gap-4 mt-6 mb-10 ">
+          <Link href="/cart">
+            <button
+              onClick={handleAddElement}
+              className="flex items-center justify-center bg-[#430199] w-full h-10 mx-auto p-0 text-white  text-lg font-semibold rounded-lg"
+            >
+              Finalizar compra
+            </button>
+          </Link>
+          <Link href="/">
+            <button
+              className="flex items-center justify-center bg-[#F5F5F5] w-full h-10 mx-auto text-[#430199] text-lg font-semibold rounded-lg"
+            >
+              Ver mas productos
+            </button>
+          </Link>
+        </div>
+      </div>
+        
         <div className="bg-gray-100 flex flex-col shadow-lg mb-3 px-14 pt-6 pb-2 text-left rounded-lg">
           <h2 className="mr-6 text-[#430199] text-xs ">
             Tu código postal
