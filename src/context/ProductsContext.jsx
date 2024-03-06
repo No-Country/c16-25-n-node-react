@@ -26,7 +26,7 @@ const ProductsProvider = ({ children }) => {
   const handleFilterBySearch = (category, searchText) => {
     let newFilteredProducts
     newFilteredProducts = [...allProducts]
-    if (category && category !== 'Todas') {
+    if (category && category !== 'Todos') {
       newFilteredProducts = newFilteredProducts.filter((p) => p.categoria === category);
     }
     if (searchText && searchText.trim() !== '') {
@@ -40,8 +40,8 @@ const ProductsProvider = ({ children }) => {
 
   const handleFilterByPrice = (checkedPrices, filtersPrice) => {
     let newFilteredProducts = [...allProducts]
-    let i = checkedPrices.findIndex((e)=>e)
-    newFilteredProducts = newFilteredProducts.filter((e)=>(e < filtersPrice[i].max && e > filtersPrice[i].min))
+    let i = checkedPrices.findIndex((p)=>p)
+    newFilteredProducts = newFilteredProducts.filter((p)=>(p.precio < filtersPrice[i].max && p.precio > filtersPrice[i].min))
     setFilteredProducts(newFilteredProducts)  
   }
   

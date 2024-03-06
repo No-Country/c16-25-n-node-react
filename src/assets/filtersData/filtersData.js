@@ -7,6 +7,11 @@ export const filtersTheme = [
 ]
 export const filtersPrice = [
     {
+        text: 'TODOS',
+        min: 0,
+        max: Infinity
+    },
+    {
         text: 'MENOS DE 50 $',
         min: 0,
         max: 50

@@ -18,6 +18,13 @@ function ProductsFilters({selectedFilters}) {
     filterByTheme(checkedList.checkedThemes, filtersTheme)
     filterByPrice(checkedList.checkedPrices, filtersPrice)
   }, [ checkedList ])
+
+  const handleChangeFilters = (i) => {
+    let newCheckedList = [...checkedList]
+    newCheckedList[i] = !newCheckedList[i]
+    setCheckedList(newCheckedList)
+  }
+
   return (
     <div className='w-44 text-sm text-[#430199] font-semibold m-4'>
       <div>
@@ -26,13 +33,13 @@ function ProductsFilters({selectedFilters}) {
       <AccordionFilter
         title={'Tema'}
         list={filtersTheme}
-        checkedFilters={checkedList.checkedThemes}
+        handleChange={handleChangeFilters}
         type={"checkbox"}
       />
       <AccordionFilter
         title={'Precio'}
         list={filtersPrice.map((elem)=>(elem.text))}
-        checkedFilters={checkedList.checkedPrices}
+        handleChange={handleChangeFilters}
         type={"radio"}
       />
       <div className='mb-4'>
