@@ -3,13 +3,12 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { CartContext } from "../context/CartContext";
 import { Link } from "wouter";
-import velador from "../assets/velador.png";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
 
-  const handleAddToCart = (product) => {
-    addToCart(product);
+  const handleAddToCart = (product,quantity) => {
+    addToCart(product,quantity);
   };
 
   // const getImageURL = async (imageName) => {
@@ -20,7 +19,6 @@ const ProductCard = ({ product }) => {
   // };
 
   return (
-
     <div className="box-border justify-between bg-gray-200 w-[200px] h-72 shadow-lg flex flex-col pt-6 pb-1 px-4 rounded-3xl border border-purple-600 overflow-hidden"
     >
       <img

@@ -1,7 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { FaRegUser } from "react-icons/fa";
-import { IoSearch } from "react-icons/io5";
-import { FaRobot, FaJedi, FaGamepad, FaShoppingCart } from "react-icons/fa";
 import { Link } from "wouter";
 import Select from "react-select";
 import searchIcon from "../assets/search_icon.svg";
@@ -43,13 +40,13 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="flex flex-col items-center text-[#430199] h-36 bg-white"> {/* w-dvw */}
+    <nav className="flex flex-col items-center text-[#430199] h-36 bg-white">
       <div className="flex flex-row justify-between w-10/12 my-6">
         <Link href="/">
           <img src={logo} className="h-12" />
         </Link>
 
-        <div className="flex items-center justify-around w-[50px] h-[50px]">
+        <div className="flex items-center justify-between space-x-4">
           <Link href="/login">
             <img src={userIcon} className="" />
           </Link>

@@ -7,11 +7,11 @@ import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { auth } from "../firebase/config";
 
-import velador from "../assets/velador2.png";
+import { CartItem } from "../components/CartItem";
 
 const ShoppingCart = () => {
   const [user] = useAuthState(auth); // Obtén el estado de autenticación actual
-  const { cart, removeFromCart } = useContext(CartContext);
+  const { cart, cartTotal } = useContext(CartContext);
   const [sales, setSales] = useState([]);
 
   useEffect(() => {
@@ -26,10 +26,6 @@ const ShoppingCart = () => {
     };
     fetchSales();
   }, []);
-
-  const handleRemoveFromCart = (productId) => {
-    removeFromCart(productId);
-  };
 
   const formatDate = (date) => {
     const d = new Date(date);
@@ -67,128 +63,99 @@ const ShoppingCart = () => {
     <>
       {user && <p>Email: {user.email}</p>}
 
-      <Link href="/">Ir al Home</Link>
-        <div className="m-2 p-2 flex items-end">
-          <h1 className="mr-6 text-[#430199] text-3xl">
-            Carrito de Compras
-          </h1>
-          <div className="flex-grow h-0.5 bg-[#430199]"></div>
-        </div>
+      <div className="m-2 p-2 flex items-end">
+        <h1 className="mr-6 text-[#430199] text-3xl">
+          Carrito de Compras
+        </h1>
+        <div className="flex-grow h-0.5 bg-[#430199]"></div>
+      </div>
       <div className="p-4 w-2/3 mx-auto rounded-xl">
         {cart.length === 0 ? (
-          <p>No hay productos en el carrito.</p>
+          <p className="text-black">No hay productos en el carrito.</p>
         ) : (
           <div className="space-y-2">
             {cart.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-center justify-between bg-gray-100 p-3 rounded-3xl"
-              > 
-                <img
-            src={velador}
-            alt="IMAGE11627"
-            className="w-1/5 h-full rounded-3xl border border-purple-600"
-          />
-          <div className="w-1/3 p-1 px-0 text-center text-lg">
-            <h3>
-            {item.nombre}
-            </h3>
-            <h2>
-            {item.descripcion}
-
-            </h2>
-            <h3 className="font-poppins font-bold">
-            {item.precio}
-              {/* Lámpara I Mario Bros - Rosado */}
-            </h3>
-          </div>
-                <button
-                  onClick={() => handleRemoveFromCart(item.id)}
-                  className="text-red-500"
-                >
-                  Eliminar
-                </button>
-              </div>
+              <CartItem key={`cartItem_${item.nombre}`} item={item} />
             ))}
           </div>
         )}
-        <div className="flex flex-col w-3/4 mx-auto my-6">
-          <div className="flex-grow h-0.5 bg-[#430199]"></div>
-          <div className="flex justify-between ">
-            <h3 className="my-2">
-              {/* $30,00 */}
-              SubTotal
-            </h3>
-            <h3 className="p-2">{/* {product.precio} */}</h3>
-          </div>
-          <div className="flex-grow h-0.5 bg-[#430199]"></div>
-
-          <div className="flex flex-col gap-4 mt-6">
-            <Link href="/cart">
-              <button
-                onClick={handleAddElement}
-                className="bg-blue-800 w-full h-8 mx-auto p-0 text-white  text-md font-bold rounded-lg"
-              >
-        Finalizar Compra
-              </button>
-            </Link>
-            <Link href="/">
-              <button
-                // onClick={() => handleAddToCart(product)}
-                className="bg-gray-100 w-full h-8 mx-auto p-0 text-black text-md font-bold rounded-lg"
-              >
-                Ver mas productos
-              </button>
-            </Link>
-          </div>
+        
+        <div className="flex flex-col w-2/5 mx-auto my-6 text-black font-semibold">
+        <div className="flex-grow h-0.5 bg-purple-700"></div>
+        <div className="flex justify-between ">
+          <h3 className="my-2">
+            Subtotal
+          </h3>
+          <h3 className="p-2">{`$ ${cartTotal()},00`}</h3>
         </div>
+        <div className="flex-grow h-0.5 bg-purple-700 mb-6"></div>
+
+        <div className="flex flex-col gap-4 mt-6 mb-10 ">
+          <Link href="/cart">
+            <button
+              onClick={handleAddElement}
+              className="flex items-center justify-center bg-[#430199] w-full h-10 mx-auto p-0 text-white  text-lg font-semibold rounded-lg"
+            >
+              Finalizar compra
+            </button>
+          </Link>
+          <Link href="/">
+            <button
+              className="flex items-center justify-center bg-[#F5F5F5] w-full h-10 mx-auto text-[#430199] text-lg font-semibold rounded-lg"
+            >
+              Ver mas productos
+            </button>
+          </Link>
+        </div>
+      </div>
+        
         <div className="bg-gray-100 flex flex-col shadow-lg mb-3 px-14 pt-6 pb-2 text-left rounded-lg">
           <h2 className="mr-6 text-[#430199] text-xs ">
             Tu código postal
           </h2>
           <div>
-          <input className=" w-1/3" type="text" />
-          <button className="bg-blue-800 w-1/3 h-8">
-            Calcular</button>
+            <input className=" w-1/3" type="text" />
+            <button className="bg-blue-800 w-1/3 h-8">
+              Calcular</button>
+          </div>
         </div>
-        </div> 
         <div className="bg-gray-100 jusitfy-between shadow-lg mb-2 px-14 pt-6 pb-2 flex flex-col text-left rounded-lg">
-        <h2 className="mr-6 text-[#430199] text-xs ">
+          <h2 className="mr-6 text-[#430199] text-xs ">
             Datos de facturación
-        </h2>
-        <div className="flex justify-between py-1">
-        <input placeholder="Nombre" className="w-1/3 h-8" type="text" />
-        <input placeholder="Apellido" className="w-1/3 h-8" type="text" />
-        </div>
-        
-        <div className="bg-gray-100 jusitfy-between flex flex-col text-left rounded-lg">
-        <div className="flex justify-between py-1">
-        <input 
-        placeholder="DNI" 
-        className=" w-1/3 h-8" type="text" />
-        <input 
-        placeholder="Telefono"
-        className=" w-1/3 h-8" type="text" />
-        </div>
-        </div>
-        <div className="bg-gray-100 jusitfy-between flex flex-col text-left rounded-lg">
-        <div>
-        <input 
-        placeholder="Correo Electronico"
-        className="py-1 w-2/3 h-8" type="text" />
-        </div>
-        <h2 className="mt-4 text-[#430199] text-xs ">
-            Domicilio
-        </h2>
-        <div className="flex justify-between py-1">
-        <input 
-        placeholder="Calle"
-        className="w-1/3 h-8" type="text" />
-        <input 
-        placeholder="Número"
-        className="w-1/3 h-8" type="text" />
-        </div>
-        </div>
+          </h2>
+          <div className="flex justify-between py-1">
+            <input placeholder="Nombre" className="w-1/3 h-8" type="text" />
+            <input placeholder="Apellido" className="w-1/3 h-8" type="text" />
+          </div>
+
+          <div className="bg-gray-100 jusitfy-between flex flex-col text-left rounded-lg">
+            <div className="flex justify-between py-1">
+              <input
+                placeholder="DNI"
+                className=" w-1/3 h-8" type="text" />
+              <input
+                placeholder="Telefono"
+                className=" w-1/3 h-8" type="text" />
+            </div>
+          </div>
+          <div className="bg-gray-100 jusitfy-between flex flex-col text-left rounded-lg">
+            <div>
+              <input
+                placeholder="Correo Electronico"
+                className="py-1 w-2/3 h-8" type="text" />
+            </div>
+            <h2 className="mt-4 text-[#430199] text-xs ">
+              Domicilio
+            </h2>
+            <div className="flex justify-between py-1">
+              <input
+                placeholder="Calle"
+                className="w-1/3 h-8" type="text" />
+              <input
+                placeholder="Número"
+                className="w-1/3 h-8" type="text" />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -203,7 +170,7 @@ const ShoppingCart = () => {
             <div className="bg-gradient-to-br from-white to-transparent rounded-lg shadow-lg py-4 px-6 m-6 w-64 h-72 text-left">
               <h2>Fecha: {formatDate(sale.fecha)}</h2>
               {Object.values(sale.saleFinish).map((product) => (
-                <div key={product.id}>
+                <div key={`cart_${product.nombre}`}>
                   <p>Nombre: {product.nombre}</p>
                   <p>Precio: {product.precio}</p>
                   <p>Descripción: {product.descripcion}</p>
