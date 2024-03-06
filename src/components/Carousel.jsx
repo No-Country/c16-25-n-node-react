@@ -35,11 +35,11 @@ const Carousel = () => {
 
   return (
     <div className="container my-2 mx-auto">
-      <div className="relative max-w-[800px] mx-auto">
+      <div className="relative w-11/12 mx-auto p-8">
         <Slider {...settings}>
           <div>
             <img
-              className="object-fill h-auto w-full md:rounded-l-lg"
+              className="object-fill h-auto md:rounded-l-lg"
               src={banner1}
               alt="Imagen"
             />

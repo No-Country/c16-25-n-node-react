@@ -11,7 +11,7 @@ function Home() {
     <>
       <Carousel />
 
-      <div className="m-2 p-2 flex items-end">
+      <div className="m-2 p-2 flex items-end w-10/12 mx-auto">
         <h1 className="mr-6 text-[#430199] text-3xl">Productos destacados</h1>
         <div className="flex-grow h-0.5 bg-[#430199]"></div>
       </div>
@@ -19,11 +19,13 @@ function Home() {
       <ProductList />
 
       <Features />
+
       <h2 className="text-[#430199]">
         Bienvenido:
         {user && <p>Email: {user.email}</p>}
         {/* Muestra el email del usuario si está autenticado */}
       </h2>
+
       <button className="text-[#430199]" onClick={() => auth.signOut()}>Cerrar sesión</button>
 
       <br />
