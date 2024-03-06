@@ -25,7 +25,6 @@ export const Navbar = () => {
         let cats = res.docs.map(e => {
           return { label: e.data().categoria, value: e.data().categoria }
         })
-        console.log(cats)
         setCategories(cats)
       })
   }, []);
@@ -70,7 +69,7 @@ export const Navbar = () => {
         <div className="flex flex-row justify-between w-10/12">
           <div className="flex items-center ">
             <Select
-              options={categories}
+              options={[...categories, {label: "Todas", value: "Todas"} ]}
               onChange={onChangeSelect}
               placeholder="Categoría"
               styles={{
@@ -85,13 +84,11 @@ export const Navbar = () => {
                 colors: {
                   ...theme.colors,
                   primary25: "#A599FE", // Background hover opción
-                  primary: "#F5F5F5", // Borde Pressed
+                  primary: "#7A1AFF", // Borde Pressed y bg selected option
                   neutral80: "#F5F5F5", // Hover del chevron
                   neutral60: "#F5F5F5", // Normal del chevron
-                  neutral50: "#F5F5F5", // Normal Letra
-                  neutral40: "#F5F5F5", // Hover del chevron
-                  neutral30: "#F5F5F5", // Hover del borde externo
-                  neutral0: "#F5F5F5", // Background opciones
+                  neutral50: "#F5F5F5", // Normal Letra placeholder
+                  neutral0: "#F5F5F5", // Background opcion
                 },
               })}
             />
