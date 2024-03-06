@@ -7,7 +7,7 @@ function Footer() {
   return (
     <>
       <footer className="bg-[#430199] w-full text-white  px-8 py-5 ">
-        <div className="flex justify-between md:flex-row flex-col">
+        <div className="flex justify-between w-11/12 mx-auto md:flex-row flex-col">
           <ContactInfo />
           <div className="md:m-0 mb-3 md:w-1/4 w-auto m-auto self-center">
             <p className="font-semibold text-sm">¡BIENVENIDOS!</p>
