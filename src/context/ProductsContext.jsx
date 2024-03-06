@@ -23,10 +23,10 @@ const ProductsProvider = ({ children }) => {
     setFilteredProducts(newFilteredProducts)
   };
 
-  const handleFilterBySearch = (category,searchText) => {
+  const handleFilterBySearch = (category, searchText) => {
     let newFilteredProducts
     newFilteredProducts = [...allProducts]
-    if(category && category !== 'Todas'){
+    if (category && category !== 'Todas') {
       newFilteredProducts = newFilteredProducts.filter((p) => p.categoria === category);
     }
     if (searchText && searchText.trim() !== '') {
@@ -38,9 +38,21 @@ const ProductsProvider = ({ children }) => {
     setFilteredProducts(newFilteredProducts)
   };
 
+  const handleFilterByPrice = (checkedPrices, filtersPrice) => {
+    let newFilteredProducts = [...allProducts]
+    let i = checkedPrices.findIndex((e)=>e)
+    newFilteredProducts = newFilteredProducts.filter((e)=>(e < filtersPrice[i].max && e > filtersPrice[i].min))
+    setFilteredProducts(newFilteredProducts)  
+  }
+  
+
+  const handleFilterByTheme = (theme, filtersTheme) => {
+    
+  }
+
   return (
     <ProductsContext.Provider
-      value={{ allProducts, filteredProducts, initializeProducts: handleInitializeProducts, filterBySearch: handleFilterBySearch, filterByCategory: handleFilterByCategory }}
+      value={{ allProducts, filteredProducts, initializeProducts: handleInitializeProducts, filterBySearch: handleFilterBySearch, filterByCategory: handleFilterByCategory, filterByTheme: handleFilterByTheme, filterByPrice: handleFilterByPrice }}
     >
       {children}
     </ProductsContext.Provider>

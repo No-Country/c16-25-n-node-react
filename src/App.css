@@ -1,10 +1,21 @@
+
 #root {
   margin: 0;
   text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+input[type="checkbox"]:checked {
+  background-image: url('/src/assets/tick.svg');
+  background-position: center;
+  background-size: 96%;
+  background-repeat:no-repeat;
+  color: #430199;
+}
+
+input[type="radio"]:checked {
+  background-image: url('/src/assets/tick.svg');
+  background-position: center;
+  background-size: 96%;
+  background-repeat:no-repeat;
+  color: #430199;
 }
