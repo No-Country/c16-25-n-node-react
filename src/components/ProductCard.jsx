@@ -2,9 +2,7 @@ import { useContext } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { CartContext } from "../context/CartContext";
-import { ProductsContext } from "../context/ProductsContext";
 import { Link } from "wouter";
-
 
 const ProductCard = ({product}) => {
   const { addToCart } = useContext(CartContext);
