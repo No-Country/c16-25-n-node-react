@@ -5,7 +5,7 @@ export default function Features() {
   return (
     <>
       {/*          <!-- Component: Feature item with icon and text --> */}
-      <div className="flex justify-around items-center bg-[#430199] w-3/4 h-20 mx-auto mb-6 responsive-features">
+      <div className="flex justify-around items-center bg-[#430199] w-3/4 min-w-[400px] h-20 p-2 mx-auto mb-6 responsive-features">
 
         <div className="flex w-1/3 items-center justify-center space-x-2 text-white responsive-features-elements py-2">
           <div className="flex items-center justify-center mx-auto space-x-2">

@@ -2,10 +2,13 @@ import ProductList from "../components/ProductList";
 import Carousel from "../components/Carousel";
 import Features from "../components/Features";
 import CarouselLogo from "../components/CarouselLogo";
+import FilterNav from "../components/FilterNav";
 
 function Home() {
   return (
     <>
+      <FilterNav />
+      
       <Carousel />
 
       <div className="m-2 p-2 flex items-end w-10/12 mx-auto">
@@ -18,8 +21,7 @@ function Home() {
       <Features />
 
       <CarouselLogo />
-
-    </>
+      </>
   );
 }
 
