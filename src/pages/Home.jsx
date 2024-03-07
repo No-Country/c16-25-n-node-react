@@ -20,13 +20,7 @@ function Home() {
 
       <Features />
 
-      <h2 className="text-[#430199]">
-        Bienvenido:
-        {user && <p>Email: {user.email}</p>}
-        {/* Muestra el email del usuario si está autenticado */}
-      </h2>
-
-      <button className="text-[#430199]" onClick={() => auth.signOut()}>Cerrar sesión</button>
+      <button className="text-[#430199]" >Cerrar sesión</button>
 
       <br />
       <br />

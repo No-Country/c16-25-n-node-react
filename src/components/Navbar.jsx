@@ -8,11 +8,15 @@ import logo from "../assets/logo.png";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { ProductsContext } from "../context/ProductsContext";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/config";
 
 export const Navbar = () => {
   const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState("Todas");
   const [categories, setCategories] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [user] = useAuthState(auth);
 
   const { filterBySearch, filterByCategory } = useContext(ProductsContext);
 
@@ -48,6 +52,18 @@ export const Navbar = () => {
     }, 300);
   };
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleMouseEnter = () => {
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsOpen(false);
+  };
+
   return (
     <nav className="flex flex-col items-center text-[#430199] h-36 bg-white">
       <div className="flex flex-row justify-between w-10/12 my-6">
@@ -56,9 +72,39 @@ export const Navbar = () => {
         </Link>
 
         <div className="flex items-center justify-between space-x-4">
-          <Link href="/login">
-            <img src={userIcon} className="" />
-          </Link>
+          {user ?
+            (
+              <div className="relative text-[#430199]" onMouseEnter={handleMouseEnter}>
+                <div className="flex items-center justify-between space-x-4 cursor-pointer" onClick={toggleDropdown}>
+                  <img src={userIcon} className="" />
+                  {user && <span> {user.email} </span>}
+                </div>
+                {isOpen && (
+                  <div className="absolute right-0 z-10 mt-2 w-48 bg-white shadow-lg animate-fadeIn text-[#430199]" onClick={toggleDropdown} onMouseLeave={handleMouseLeave}>
+                    <Link
+                      href="/orderhistory"
+                      className="block px-4 py-2  hover:bg-gray-200"
+                    >
+                      Mis Compras
+                    </Link>
+                    <Link
+                      href="/"
+                      className="block px-4 py-2  hover:bg-gray-200"
+                      onClick={() => auth.signOut()}
+                    >
+                      Cerrar Sesión
+                    </Link>
+                  </div>
+                )}
+              </div>
+            )
+            :
+            (
+              <Link href="/login">
+                <img src={userIcon} className="" />
+              </Link>
+            )
+          }
           <Link href="/cart">
             <img src={cartIcon} className="" />
           </Link>
@@ -69,7 +115,7 @@ export const Navbar = () => {
         <div className="flex flex-row justify-between w-10/12">
           <div className="flex items-center ">
             <Select
-              options={[...categories, {label: "Todas", value: "Todas"} ]}
+              options={[...categories, { label: "Todas", value: "Todas" }]}
               onChange={onChangeSelect}
               placeholder="Categoría"
               styles={{
