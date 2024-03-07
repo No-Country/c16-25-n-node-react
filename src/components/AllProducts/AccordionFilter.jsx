@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import flechaSvg from "../../assets/Icon Sube-Baja.svg"
 
 
 function AccordionFilter({ title, list, handleChange, type }) {
-  const [filterTitle, setFilterTitle] = useState(title)
-  const [filterList, setFilterList] = useState(list)
+  const [filterTitle] = useState(title)
+  const [filterList] = useState(list)
   const [visible, setVisible] = useState(true)
 
   const handleClick = () => {
