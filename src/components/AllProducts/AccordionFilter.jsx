@@ -1,25 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import flechaSvg from "../../assets/Icon Sube-Baja.svg"
 
 
-function AccordionFilter({ title, list, checkedFilters, type }) {
-  const [filterTitle, setFilterTitle] = useState(title)
-  const [filterList, setFilterList] = useState(list)
-  const [checkedList, setCheckedList] = useState(checkedFilters)
+function AccordionFilter({ title, list, handleChange, type }) {
+  const [filterTitle] = useState(title)
+  const [filterList] = useState(list)
   const [visible, setVisible] = useState(true)
 
   const handleClick = () => {
     setVisible(!visible)
   }
-  
-  const handleChange = (i) => {
-    let newCheckedList = [...checkedList]
-    newCheckedList[i] = !newCheckedList[i]
-    setCheckedList(newCheckedList)
-  }
-  useEffect(() => {
-    console.log({ checkedList })
-  }, [checkedList])
 
   return (
     <div>
