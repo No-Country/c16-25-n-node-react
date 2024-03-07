@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "wouter";
 import Select from "react-select";
 import searchIcon from "../assets/search_icon.svg";
@@ -65,7 +65,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="flex flex-col items-center text-[#430199] h-36 bg-white">
+    <nav className="flex flex-col sticky top-0 z-50 items-center text-[#430199] h-36 bg-white border-b border-slate-200">
       <div className="flex flex-row justify-between w-10/12 my-6">
         <Link href="/">
           <img src={logo} className="h-12" />

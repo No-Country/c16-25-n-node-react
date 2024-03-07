@@ -58,6 +58,7 @@ const ShoppingCart = () => {
       console.error("Error al agregar elemento de ejemplo:", error);
     }
   };
+  
 
   return (
     <>
@@ -108,78 +109,29 @@ const ShoppingCart = () => {
           </Link>
         </div>
       </div>
-        
-        <div className="bg-gray-100 flex flex-col shadow-lg mb-3 px-14 pt-6 pb-2 text-left rounded-lg">
-          <h2 className="mr-6 text-[#430199] text-xs ">
-            Tu código postal
-          </h2>
-          <div>
-            <input className=" w-1/3" type="text" />
-            <button className="bg-blue-800 w-1/3 h-8">
-              Calcular</button>
-          </div>
+    </div>
+    <div className="m-2 p-2 flex items-end">
+<h1 className="mr-6 text-[#430199] text-3xl">Historial de Compras</h1>
+<div className="flex-grow h-0.5 bg-[#430199]"></div>
+</div>
+
+<div className="flex flex-wrap">
+{sales.map((sale) => (
+  <div key={sale.id}>
+    <div className="bg-gradient-to-br from-white to-transparent rounded-lg shadow-lg py-4 px-6 m-6 w-64 h-72 text-left">
+      <h2>Fecha: {formatDate(sale.fecha)}</h2>
+      {Object.values(sale.saleFinish).map((product) => (
+        <div key={`cart_${product.nombre}`}>
+          <p>Nombre: {product.nombre}</p>
+          <p>Precio: {product.precio}</p>
+          <p>Descripción: {product.descripcion}</p>
         </div>
-        <div className="bg-gray-100 jusitfy-between shadow-lg mb-2 px-14 pt-6 pb-2 flex flex-col text-left rounded-lg">
-          <h2 className="mr-6 text-[#430199] text-xs ">
-            Datos de facturación
-          </h2>
-          <div className="flex justify-between py-1">
-            <input placeholder="Nombre" className="w-1/3 h-8" type="text" />
-            <input placeholder="Apellido" className="w-1/3 h-8" type="text" />
-          </div>
+      ))}
+    </div>
+  </div>
+))}
+</div>
 
-          <div className="bg-gray-100 jusitfy-between flex flex-col text-left rounded-lg">
-            <div className="flex justify-between py-1">
-              <input
-                placeholder="DNI"
-                className=" w-1/3 h-8" type="text" />
-              <input
-                placeholder="Telefono"
-                className=" w-1/3 h-8" type="text" />
-            </div>
-          </div>
-          <div className="bg-gray-100 jusitfy-between flex flex-col text-left rounded-lg">
-            <div>
-              <input
-                placeholder="Correo Electronico"
-                className="py-1 w-2/3 h-8" type="text" />
-            </div>
-            <h2 className="mt-4 text-[#430199] text-xs ">
-              Domicilio
-            </h2>
-            <div className="flex justify-between py-1">
-              <input
-                placeholder="Calle"
-                className="w-1/3 h-8" type="text" />
-              <input
-                placeholder="Número"
-                className="w-1/3 h-8" type="text" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="m-2 p-2 flex items-end">
-        <h1 className="mr-6 text-[#430199] text-3xl">Historial de Compras</h1>
-        <div className="flex-grow h-0.5 bg-[#430199]"></div>
-      </div>
-
-      <div className="flex flex-wrap">
-        {sales.map((sale) => (
-          <div key={sale.id}>
-            <div className="bg-gradient-to-br from-white to-transparent rounded-lg shadow-lg py-4 px-6 m-6 w-64 h-72 text-left">
-              <h2>Fecha: {formatDate(sale.fecha)}</h2>
-              {Object.values(sale.saleFinish).map((product) => (
-                <div key={`cart_${product.nombre}`}>
-                  <p>Nombre: {product.nombre}</p>
-                  <p>Precio: {product.precio}</p>
-                  <p>Descripción: {product.descripcion}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
     </>
   );
 };

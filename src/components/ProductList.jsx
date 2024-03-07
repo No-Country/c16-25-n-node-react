@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { useContext } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 import ProductCard from "./ProductCard";
