@@ -34,8 +34,8 @@ const Carousel = () => {
   };
 
   return (
-    <div className="container my-2 mx-auto">
-      <div className="relative w-11/12 mx-auto p-8">
+    <div className="container mt-12 mx-auto">
+      <div className="relative w-11/12 pt-6 px-6 pb-2">
         <Slider {...settings}>
           <div>
             <img

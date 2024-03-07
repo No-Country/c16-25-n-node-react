@@ -51,7 +51,7 @@ function App() {
             <Route path='/cart' component={ShoppingCart} />
             <Route path="/product/:id" component={ProductDetail} />
             <Route path="/orderhistory" component={OrderHistory} />
-            <Route path="/allproducts" component={AllProducts} />
+            <Route path="/products" component={AllProducts} />
           </CartProvider >
         
 

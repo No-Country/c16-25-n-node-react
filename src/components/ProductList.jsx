@@ -11,7 +11,7 @@ const ProductList = () => {
   
   return (
     <>
-      <div className="flex flex-wrap gap-10 m-4 justify-between w-10/12 mx-auto mb-16">
+      <div className="flex flex-wrap gap-4 m-2 justify-between w-10/12 mx-auto mb-16">
         {bestProducts.length !== 0 ? bestProducts.map((product) => (
           <div className="w-[330px]">
             <ProductCard key={`productcard${product.nombre}`} product={product} />
