@@ -1,12 +1,9 @@
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/config";
-
 import ProductList from "../components/ProductList";
 import Carousel from "../components/Carousel";
 import Features from "../components/Features";
+import CarouselLogo from "../components/CarouselLogo";
 
 function Home() {
-  const [user] = useAuthState(auth); // Obtén el estado de autenticación actual
   return (
     <>
       <Carousel />
@@ -20,10 +17,7 @@ function Home() {
 
       <Features />
 
-      <button className="text-[#430199]" >Cerrar sesión</button>
-
-      <br />
-      <br />
+      <CarouselLogo />
 
     </>
   );

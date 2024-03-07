@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 
-
-function ProductOrder({ name, desc, fecha, imagen }) {
+function ProductOrder({ desc, fecha, imagen }) {
     return (
         <div className="text-black my-2 w-2/3 text-lg ">
             <div className="m-0 mb-3 p-0 flex items-center justify-end">
