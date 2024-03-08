@@ -13,8 +13,8 @@ const ProductList = () => {
     <>
       <div className="flex flex-wrap gap-4 m-2 justify-between w-10/12 mx-auto mb-16">
         {bestProducts.length !== 0 ? bestProducts.map((product) => (
-          <div className="w-[330px]">
-            <ProductCard key={`productcard${product.nombre}`} product={product} />
+          <div key={`productcard${product.nombre}`} className="flex justify-around items-center w-[28%]">
+            <ProductCard product={product} />
           </div>
           
         )) : <div>No se encontraron resultados</div>}

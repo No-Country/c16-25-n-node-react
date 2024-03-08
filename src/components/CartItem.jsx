@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState, useContext } from 'react';
 import { CartContext } from "../context/CartContext";
-import velador from "../assets/velador2.png";
+import { FaTrashAlt } from "react-icons/fa";
 
 export const CartItem = ({ item }) => {
-    const { nombre, precio, quantity } = item
+    const { nombre, precio, quantity, imagen,id } = item
 
     const [count, setCount] = useState(quantity);
     const { removeFromCart, addToCart } = useContext(CartContext);
@@ -27,17 +27,20 @@ export const CartItem = ({ item }) => {
 
     return (
         <div
-            key={item.id}
-            className="flex items-center justify-between bg-gray-100 p-3 rounded-3xl"
+            key={`itemCart${id}`}
+            className="flex items-center justify-around bg-gray-100 p-3 rounded-3xl shadow-md"
         >
             <img
-                src={velador}
-                alt="IMAGE11627"
-                className="w-1/5 h-full rounded-3xl border border-purple-600"
+                src={imagen}
+                alt={nombre}
+                className="w-1/5 rounded-3xl border border-purple-600"
             />
             <div className="w-1/3 p-1 px-0 text-center text-lg text-black">
-                <div className='flex flex-rox'>
-                    <span className='mr-2'>{`x ${quantity}`}</span>
+                <div className='flex flex-rox space-x-2'>
+                    <div className='w-8 flex space-x-1'>
+                        <span>X</span>
+                        <span className=''>{quantity}</span>
+                    </div>
                     <div>
                         <h3 className="font-poppins font-bold">
                             {nombre}
@@ -59,9 +62,9 @@ export const CartItem = ({ item }) => {
             </div>
             <button
                 onClick={() => handleRemoveFromCart(item.id)}
-                className="text-red-500"
+                className="text-red-500 text-2xl"
             >
-                Eliminar
+            <FaTrashAlt />
             </button>
         </div>
     )

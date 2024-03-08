@@ -20,6 +20,7 @@
     "react-select": "^5.8.0",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.10.6",
     "wouter": "^3.0.0"
   },
   "devDependencies": {

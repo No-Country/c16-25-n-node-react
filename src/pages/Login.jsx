@@ -84,12 +84,11 @@ const Login = () => {
         </form>
 
         {redirectToHome && <Redirect to="/" />}
-
-        <Link className='my-10' href="/register">
-          <span className='text-sm'>
-            No tenés cuenta? Registrate aquí
-          </span>
-        </Link>
+        
+        <div className="py-4 space-x-4">
+          <span className='font-semibold text-black'>¿No tenés cuenta?</span>
+          <Link className='font-semibold text-[#430199]' href="/register">Registrate aquí</Link>
+        </div>  
       </div>
     </>
   );

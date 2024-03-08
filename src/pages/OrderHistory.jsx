@@ -1,26 +1,33 @@
 import ProductOrder from '../components/ProductOrder'
 import { useEffect, useState } from 'react'
 import { db } from '../firebase/config'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { useContext } from 'react'
-import {ProductsContext} from '../context/ProductsContext'
-import {meses} from '../assets/meses'
+import { ProductsContext } from '../context/ProductsContext'
+import { meses } from '../assets/meses'
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/config";
 
 export function OrderHistory() {
   const [sales, setSales] = useState([])
-  const {allProducts} = useContext(ProductsContext)
+  const { allProducts } = useContext(ProductsContext)
+  const [user] = useAuthState(auth);
+  
 
   useEffect(() => {
-    const fetchSales = async () => {
-      const salesRef = collection(db, "sales");
-      const querySnapshot = await getDocs(salesRef);
-      const salesData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setSales(salesData);
+    const fetchSales = async (usuario) => {
+      try {
+        const salesRef = collection(db, 'sales');
+        const q = query(salesRef, where('usuario', '==', usuario)); // Query sales for a specific usuario
+        const querySnapshot = await getDocs(q);
+        const salesData = querySnapshot.docs.map(doc => doc.data());
+        setSales(salesData);
+      } catch (error) {
+        console.error('Error fetching sales:', error);
+      }
     };
-    fetchSales();
+
+    fetchSales(user.email);
   }, []);
 
   const formatDate = (date) => {
@@ -44,8 +51,8 @@ export function OrderHistory() {
                 <ProductOrder
                   name={p.nombre}
                   fecha={formatDate(s.fecha)}
-                  imagen={allProducts.find((product)=>product.id === id)?.imagen}
-                  productId = {id}
+                  imagen={allProducts.find((product) => product.id === id)?.imagen}
+                  productId={id}
                 />
               </div>
             ))}

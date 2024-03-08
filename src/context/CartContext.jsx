@@ -22,7 +22,6 @@ const CartProvider = ({ children }) => {
       const newList = [...cart, newProduct];
       setCart(newList);
     }
-    console.log(cart)
   };
 
   /* const handleAddToCart = (product) => {
