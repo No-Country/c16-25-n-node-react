@@ -38,7 +38,7 @@ export const Navbar = () => {
                   {user && <span> {user.email} </span>}
                 </div>
                 {isOpen && (
-                  <div className="absolute right-0 z-10 mt-2 w-48 bg-white shadow-lg animate-fadeIn text-[#430199]" onClick={toggleDropdown} onMouseLeave={handleMouseLeave}>
+                  <div className="absolute right-0 z-60 mt-2 w-48 bg-white shadow-lg animate-fadeIn text-[#430199]" onClick={toggleDropdown} onMouseLeave={handleMouseLeave}>
                     <Link
                       href="/orderhistory"
                       className="block px-4 py-2  hover:bg-gray-200"

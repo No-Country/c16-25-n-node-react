@@ -1,6 +1,6 @@
 import ProductsFilters from "../components/AllProducts/ProductsFilters"
 import ProductsGrid from "../components/AllProducts/ProductsGrid"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { ProductsContext } from "../context/ProductsContext"
 import TitleLine from "../components/AllProducts/TitleLine"
 
