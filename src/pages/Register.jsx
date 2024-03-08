@@ -3,6 +3,7 @@ import { Redirect, Link } from 'wouter';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../firebase/config';
 import { collection, addDoc } from 'firebase/firestore';
+import Swal from 'sweetalert2';
 
 const Register = () => {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -17,11 +18,17 @@ const Register = () => {
     numero: '',
     codigoPostal: ''
   });
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
       const { email, password, nombre, apellido, dni, telefono, calle, numero, codigoPostal } = formData;
+
+      // Verificar si las contraseñas coinciden
+      if (password !== confirmPassword) {
+        throw new Error('Las contraseñas no coinciden');
+      }
 
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const uid = userCredential.user.uid;
@@ -38,14 +45,32 @@ const Register = () => {
       };
 
       await addDoc(collection(db, 'users'), userData);
-      setShowSuccessPopup(true);
+      Swal.fire({
+        title: '¡Registro Exitoso!',
+        text: 'Tu registro ha sido exitoso. ¡Bienvenido!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#430199'
+      }).then(() => {
+        setShowSuccessPopup(true);
+        });
     } catch (error) {
       console.log(error);
+      // Mostrar alerta si las contraseñas no coinciden
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error.message,
+      });
     }
   };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
   };
 
   const closeSuccessPopup = () => {
@@ -94,9 +119,9 @@ const Register = () => {
             </label>
             <input
               type="password"
-              value={''}
-              name="password"
-              onChange={()=>{}}
+              value={confirmPassword}
+              name="confirmPassword"
+              onChange={handleConfirmPasswordChange}
               placeholder="********"
               className="px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
             />
