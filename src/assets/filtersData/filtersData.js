@@ -1,9 +1,7 @@
 export const filtersTheme = [
-    'MARIO BROSS',
-    'DRAGON BALL',
-    'NARUTO',
-    'MARVEL',
-    'Otros',
+    'Anime',
+    'Gaming',
+    'Cine',
 ]
 export const filtersPrice = [
     {
@@ -12,23 +10,18 @@ export const filtersPrice = [
         max: Infinity
     },
     {
-        text: 'MENOS DE 50 $',
+        text: 'MENOS DE 5000 $',
         min: 0,
-        max: 50
+        max: 5000
     },
     {
-        text: '50 $ - 100 $',
-        min: 50,
-        max: 100
+        text: '5.000 $ - 10.000 $',
+        min: 5000,
+        max: 10000
     },
     {
-        text: '100 $ - 200 $',
-        min: 100,
-        max: 200
-    },
-    {
-        text: '250 $ - 500 $',
-        min: 250,
-        max: 500
+        text: '10.000 $ - 20.000 $',
+        min: 10000,
+        max: 20000
     },
 ]
