@@ -3,6 +3,7 @@ import { Redirect, Link } from 'wouter';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../firebase/config';
 import { collection, addDoc } from 'firebase/firestore';
+import Swal from 'sweetalert2';
 
 const Register = () => {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -17,11 +18,17 @@ const Register = () => {
     numero: '',
     codigoPostal: ''
   });
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
       const { email, password, nombre, apellido, dni, telefono, calle, numero, codigoPostal } = formData;
+
+      // Verificar si las contraseñas coinciden
+      if (password !== confirmPassword) {
+        throw new Error('Las contraseñas no coinciden');
+      }
 
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const uid = userCredential.user.uid;
@@ -38,14 +45,32 @@ const Register = () => {
       };
 
       await addDoc(collection(db, 'users'), userData);
-      setShowSuccessPopup(true);
+      Swal.fire({
+        title: '¡Registro Exitoso!',
+        text: 'Tu registro ha sido exitoso. ¡Bienvenido!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#430199'
+      }).then(() => {
+        setShowSuccessPopup(true);
+        });
     } catch (error) {
       console.log(error);
+      // Mostrar alerta si las contraseñas no coinciden
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error.message,
+      });
     }
   };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
   };
 
   const closeSuccessPopup = () => {
@@ -72,7 +97,7 @@ const Register = () => {
               name="email"
               onChange={handleInputChange}
               placeholder="youremail@company.tld"
-              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
+              className="px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
             />
           </div>
           <div className='flex flex-col'>
@@ -84,8 +109,8 @@ const Register = () => {
               value={formData.password}
               name="password"
               onChange={handleInputChange}
-              placeholder="*************"
-              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
+              placeholder="********"
+              className="px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
             />
           </div>
           <div className='flex flex-col'>
@@ -94,11 +119,11 @@ const Register = () => {
             </label>
             <input
               type="password"
-              value={formData.password}
-              name="password"
-              onChange={handleInputChange}
-              placeholder="*************"
-              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
+              value={confirmPassword}
+              name="confirmPassword"
+              onChange={handleConfirmPasswordChange}
+              placeholder="********"
+              className="px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
             />
           </div>
           <div>
@@ -108,7 +133,7 @@ const Register = () => {
             <div className='flex flex-wrap'>
               <input
                 placeholder="Nombre"
-                className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-50 bg-white"
+                className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-50 bg-white"
                 type="text"
                 name="nombre"
                 value={formData.nombre}
@@ -116,7 +141,7 @@ const Register = () => {
               />
               <input
                 placeholder="Apellido"
-                className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                 type="text"
                 name="apellido"
                 value={formData.apellido}
@@ -127,7 +152,7 @@ const Register = () => {
             <div>
               <input
                 placeholder="DNI"
-                className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                 type="text"
                 name="dni"
                 value={formData.dni}
@@ -135,7 +160,7 @@ const Register = () => {
               />
               <input
                 placeholder="Telefono"
-                className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                 type="text"
                 name="telefono"
                 value={formData.telefono}
@@ -149,7 +174,7 @@ const Register = () => {
               <div className='flex flex-wrap'>
                 <input
                   placeholder="Calle"
-                  className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                   type="text"
                   name="calle"
                   value={formData.calle}
@@ -159,7 +184,7 @@ const Register = () => {
               <div className="">
                 <input
                   placeholder="Número"
-                  className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                   type="text"
                   name="numero"
                   value={formData.numero}
@@ -169,7 +194,7 @@ const Register = () => {
               <div className="">
                 <input
                   placeholder="Codigo Postal"
-                  className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                   type="text"
                   name="codigoPostal"
                   value={formData.codigoPostal}

@@ -57,7 +57,7 @@ const Login = () => {
               id="email"
               onChange={handleChange}
               placeholder="youremail@company.tld"
-              className="px-4 py-2 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-[#B4B4B4]"
+              className="px-4 py-2 border text-black bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-[#B4B4B4]"
             />
           </div>
 
@@ -71,7 +71,7 @@ const Login = () => {
               id="password"
               onChange={handleChange}
               placeholder="********"
-              className="px-4 py-2 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-[#B4B4B4]"
+              className="px-4 py-2 border text-black bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-[#B4B4B4]"
             />
           </div>
 
@@ -84,12 +84,11 @@ const Login = () => {
         </form>
 
         {redirectToHome && <Redirect to="/" />}
-
-        <Link className='my-10' href="/register">
-          <span className='text-sm'>
-            No tenés cuenta? Registrate aquí
-          </span>
-        </Link>
+        
+        <div className="py-4 space-x-4">
+          <span className='font-semibold text-black'>¿No tenés cuenta?</span>
+          <Link className='font-semibold text-[#430199]' href="/register">Registrate aquí</Link>
+        </div>  
       </div>
     </>
   );

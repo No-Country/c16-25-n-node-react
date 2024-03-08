@@ -7,8 +7,8 @@ import TitleLine from "../components/AllProducts/TitleLine"
 function AllProducts() {
   const { filteredProducts } = useContext(ProductsContext)
   return (
-    <div>
-      <div className="mx-36 mb-8">
+    <div className="">
+      <div className="mx-36">
         <TitleLine
           title={"LÁMPARAS"}
         />

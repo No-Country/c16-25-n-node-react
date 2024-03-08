@@ -9,7 +9,7 @@ function ProductsGrid({ products }) {
   }
 
   return (
-    <div className="grid grid-cols-4 grid-rows-3 gap-y-5 gap-x-8 grid-flow-row min-w-max mb-20">
+    <div className="grid grid-cols-4 grid-rows-3 gap-y-5 gap-x-8 grid-flow-row min-w-max mb-8">
       {/* {products.map((product)=>(
         <ProductCard
           key={product.id}
@@ -18,7 +18,7 @@ function ProductsGrid({ products }) {
       ))} */}
       {/* para testear con 12 elementos */}
       {products.map((product) => (
-        <div className=" w-[225px] text-xs">
+        <div className=" w-[14.5rem] text-xs">
           <ProductCard
             key={product.id}
             product={product}
