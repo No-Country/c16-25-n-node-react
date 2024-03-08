@@ -1,9 +1,14 @@
+/* eslint-disable react/prop-types */
+import { Link } from "wouter";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/config";
+
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import { Link } from "wouter";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
+  const [user] = useAuthState(auth);
 
   const handleAddToCart = (product, quantity) => {
     addToCart(product, quantity);
@@ -33,6 +38,8 @@ const ProductCard = ({ product }) => {
                 Ver más
               </button>
             </Link>
+            {user ?
+            (
             <Link href={`/cart`}>
               <button
                 onClick={() => handleAddToCart(product, 1)}
@@ -41,7 +48,15 @@ const ProductCard = ({ product }) => {
                 Comprar
               </button>
             </Link>
-
+            ):(
+              <Link href={`/login`}>
+              <button
+                className="flex justify-center items-center bg-[#A599FE] m-2 p-2 px-3 text-black text-center font-semibold rounded-lg"
+              >
+                Comprar
+              </button>
+            </Link>
+            )}
           </div>
         </div>
       </div>

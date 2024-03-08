@@ -13,20 +13,6 @@ const ShoppingCart = () => {
   const [user] = useAuthState(auth);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
-  /*const [sales, setSales] = useState([]);
-     useEffect(() => {
-      const fetchSales = async () => {
-        const salesRef = collection(db, "sales");
-        const querySnapshot = await getDocs(salesRef);
-        const salesData = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setSales(salesData);
-      };
-      fetchSales();
-    }, []); */
-
   const formatDate = (date) => {
     const d = new Date(date);
     const day = d.getDate().toString().padStart(2, "0");
@@ -77,7 +63,7 @@ const ShoppingCart = () => {
         confirmButtonText: 'OK',
         confirmButtonColor: '#430199'
       });
-      clearCart();
+      clearCart()
     } catch (error) {
       console.error("Error al agregar elemento de ejemplo:", error);
     }
@@ -117,7 +103,7 @@ const ShoppingCart = () => {
           <div className="flex-grow h-0.5 bg-purple-700 mb-6"></div>
 
           <div className="flex flex-col gap-4 mt-6 mb-10 ">
-            <Link href="/cart">
+            <Link href="/">
               <button
                 onClick={handleAddElement}
                 className="flex items-center justify-center bg-[#430199] w-full h-10 mx-auto p-0 text-white  text-lg font-semibold rounded-lg"
