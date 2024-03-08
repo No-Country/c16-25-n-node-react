@@ -4,7 +4,7 @@ import { db } from '../firebase/config'
 import { collection, getDocs } from 'firebase/firestore'
 import { useContext } from 'react'
 import {ProductsContext} from '../context/ProductsContext'
-import meses from '../assets/meses'
+import {meses} from '../assets/meses'
 
 export function OrderHistory() {
   const [sales, setSales] = useState([])
