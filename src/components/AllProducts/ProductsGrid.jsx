@@ -18,9 +18,8 @@ function ProductsGrid({ products }) {
       ))} */}
       {/* para testear con 12 elementos */}
       {products.map((product) => (
-        <div className=" w-[14.5rem] text-xs">
+        <div key={`${product.id}_allproducts`}className=" w-[14.5rem] text-xs">
           <ProductCard
-            key={product.id}
             product={product}
           />
         </div>

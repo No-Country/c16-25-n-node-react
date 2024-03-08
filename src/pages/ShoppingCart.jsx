@@ -1,7 +1,7 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Swal from 'sweetalert2';
 import { CartContext } from "../context/CartContext";
-import { Link } from "wouter";
+import { Link, Redirect } from "wouter";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { CartItem } from "../components/CartItem";
@@ -11,6 +11,7 @@ import { auth } from "../firebase/config";
 const ShoppingCart = () => {
   const { cart, cartTotal, clearCart } = useContext(CartContext);
   const [user] = useAuthState(auth);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   /*const [sales, setSales] = useState([]);
      useEffect(() => {
@@ -43,12 +44,11 @@ const ShoppingCart = () => {
         title: '¡Atención!',
         text: 'Tu carrito está vacío. Por favor, agrega productos antes de realizar un pedido.',
         icon: 'warning',
-        confirmButtonText: `<a href="/products" style="color: white;">Ver productos</a>`,
+        confirmButtonText: `Ver productos`,
         confirmButtonColor: '#430199',
-        html: `
-              <span>Tu carrito está vacío. Por favor, agrega productos antes de realizar un pedido.</span>
-            `,
-      })
+      }).then(() => {
+        setShowSuccessPopup(true);
+        });
       return; // Exit the function early
     }
 
@@ -83,6 +83,9 @@ const ShoppingCart = () => {
     }
   };
 
+  const closeSuccessPopup = () => {
+    setShowSuccessPopup(false);
+  };
 
   return (
     <>
@@ -131,29 +134,16 @@ const ShoppingCart = () => {
             </Link>
           </div>
         </div>
+        {showSuccessPopup && (
+          <div className="popup">
+            <div className="popup-content">
+              <h2>¡Atención!</h2>
+              <p>Tu carrito está vacío. Por favor, agrega productos antes de realizar un pedido.</p>
+              <button onClick={closeSuccessPopup}>Ver productos</button>
+            </div>
+          </div>
+        ) && <Redirect to="/products" />}
       </div>
-      {/* <div className="m-2 p-2 flex items-end">
-<h1 className="mr-6 text-[#430199] text-3xl">Historial de Compras</h1>
-<div className="flex-grow h-0.5 bg-[#430199]"></div>
-</div>
-
- <div className="flex flex-wrap">
-{sales.map((sale) => (
-  <div key={sale.id}>
-    <div className="bg-gradient-to-br from-white to-transparent rounded-lg shadow-lg py-4 px-6 m-6 w-64 h-72 text-left">
-      <h2>Fecha: {formatDate(sale.fecha)}</h2>
-      {Object.values(sale.saleFinish).map((product) => (
-        <div key={`cart_${product.nombre}`}>
-          <p>Nombre: {product.nombre}</p>
-          <p>Precio: {product.precio}</p>
-          <p>Descripción: {product.descripcion}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-))}
-</div> */}
-
     </>
   );
 };
