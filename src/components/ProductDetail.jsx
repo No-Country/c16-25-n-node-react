@@ -27,8 +27,8 @@ const ProductDetail = () => {
     fetchProduct();
   }, [id]);
 
-  const handleAddToCart = (product,count) => {
-    addToCart(product,count);
+  const handleAddToCart = (product, count) => {
+    addToCart(product, count);
   };
 
   if (!product) {
@@ -41,9 +41,9 @@ const ProductDetail = () => {
   };
 
   const decrement = () => {
-      if (count > 0) {
-          setCount(current => current - 1);
-      }
+    if (count > 0) {
+      setCount(current => current - 1);
+    }
   };
 
   return (
@@ -56,11 +56,11 @@ const ProductDetail = () => {
       </div>
 
       <div className="flex flex-row w-3/4 mx-auto items-center h-auto mb-16">
-        
+
         <div className="w-2/4">
           <img
-            src={velador}
-            alt="IMAGE11627"
+            src={product.imagen}
+            alt={product.nombre}
             className="w-3/5 ml-4 rounded-3xl border border-purple-600 aspect-square object-cover"
           />
         </div>
@@ -87,20 +87,20 @@ const ProductDetail = () => {
           <h3 className="my-2">
             Subtotal
           </h3>
-          <h3 className="p-2">{`$ ${product.precio*count},00`}</h3>
+          <h3 className="p-2">{`$ ${product.precio * count},00`}</h3>
         </div>
         <div className="flex-grow h-0.5 bg-purple-700 mb-6"></div>
 
         <div className="flex flex-col gap-4 mt-6 mb-10 ">
           <Link href="/cart">
             <button
-              onClick={() => handleAddToCart(product,count)}
+              onClick={() => handleAddToCart(product, count)}
               className="flex items-center justify-center bg-[#430199] w-full h-10 mx-auto p-0 text-white  text-lg font-semibold rounded-lg"
             >
               Iniciar compra
             </button>
           </Link>
-          <Link href="/">
+          <Link href="/products">
             <button
               className="flex items-center justify-center bg-[#F5F5F5] w-full h-10 mx-auto text-[#430199] text-lg font-semibold rounded-lg"
             >

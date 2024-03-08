@@ -57,7 +57,7 @@ const Login = () => {
               id="email"
               onChange={handleChange}
               placeholder="youremail@company.tld"
-              className="px-4 py-2 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-[#B4B4B4]"
+              className="px-4 py-2 border text-black bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-[#B4B4B4]"
             />
           </div>
 
@@ -71,7 +71,7 @@ const Login = () => {
               id="password"
               onChange={handleChange}
               placeholder="********"
-              className="px-4 py-2 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-[#B4B4B4]"
+              className="px-4 py-2 border text-black bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-[#B4B4B4]"
             />
           </div>
 

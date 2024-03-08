@@ -9,7 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 
 const ShoppingCart = () => {
-  const { cart, cartTotal } = useContext(CartContext);
+  const { cart, cartTotal, clearCart } = useContext(CartContext);
   const [user] = useAuthState(auth);
 
   /*const [sales, setSales] = useState([]);
@@ -37,7 +37,24 @@ const ShoppingCart = () => {
   };
 
   const handleAddElement = async () => {
+    if (cart.length === 0) {
+      // If cart is empty, show SweetAlert message and redirect to '/products' route
+      Swal.fire({
+        title: '¡Atención!',
+        text: 'Tu carrito está vacío. Por favor, agrega productos antes de realizar un pedido.',
+        icon: 'warning',
+        confirmButtonText: `<a href="/products" style="color: white;">Ver productos</a>`,
+        confirmButtonColor: '#430199',
+        html: `
+              <span>Tu carrito está vacío. Por favor, agrega productos antes de realizar un pedido.</span>
+            `,
+      })
+      return; // Exit the function early
+    }
+
     const cartArray = cart.map(item => ({
+      id: item.id,
+      imagen: item.imagen,
       nombre: item.nombre,
       precio: item.precio,
       cantidad: item.quantity
@@ -49,7 +66,6 @@ const ShoppingCart = () => {
       total: cartTotal(),
       usuario: user.email
     };
-    console.log(newSale)
 
     try {
       const salesRef = collection(db, "sales");
@@ -61,6 +77,7 @@ const ShoppingCart = () => {
         confirmButtonText: 'OK',
         confirmButtonColor: '#430199'
       });
+      clearCart();
     } catch (error) {
       console.error("Error al agregar elemento de ejemplo:", error);
     }
@@ -105,7 +122,7 @@ const ShoppingCart = () => {
                 Finalizar compra
               </button>
             </Link>
-            <Link href="/">
+            <Link href="/products">
               <button
                 className="flex items-center justify-center bg-[#F5F5F5] w-full h-10 mx-auto text-[#430199] text-lg font-semibold rounded-lg"
               >

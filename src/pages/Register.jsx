@@ -72,7 +72,7 @@ const Register = () => {
               name="email"
               onChange={handleInputChange}
               placeholder="youremail@company.tld"
-              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
+              className="px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
             />
           </div>
           <div className='flex flex-col'>
@@ -84,8 +84,8 @@ const Register = () => {
               value={formData.password}
               name="password"
               onChange={handleInputChange}
-              placeholder="*************"
-              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
+              placeholder="********"
+              className="px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
             />
           </div>
           <div className='flex flex-col'>
@@ -94,11 +94,11 @@ const Register = () => {
             </label>
             <input
               type="password"
-              value={formData.password}
+              value={''}
               name="password"
-              onChange={handleInputChange}
-              placeholder="*************"
-              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
+              onChange={()=>{}}
+              placeholder="********"
+              className="px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder-[#B4B4B4]"
             />
           </div>
           <div>
@@ -108,7 +108,7 @@ const Register = () => {
             <div className='flex flex-wrap'>
               <input
                 placeholder="Nombre"
-                className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-50 bg-white"
+                className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-50 bg-white"
                 type="text"
                 name="nombre"
                 value={formData.nombre}
@@ -116,7 +116,7 @@ const Register = () => {
               />
               <input
                 placeholder="Apellido"
-                className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                 type="text"
                 name="apellido"
                 value={formData.apellido}
@@ -127,7 +127,7 @@ const Register = () => {
             <div>
               <input
                 placeholder="DNI"
-                className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                 type="text"
                 name="dni"
                 value={formData.dni}
@@ -135,7 +135,7 @@ const Register = () => {
               />
               <input
                 placeholder="Telefono"
-                className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                 type="text"
                 name="telefono"
                 value={formData.telefono}
@@ -149,7 +149,7 @@ const Register = () => {
               <div className='flex flex-wrap'>
                 <input
                   placeholder="Calle"
-                  className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                   type="text"
                   name="calle"
                   value={formData.calle}
@@ -159,7 +159,7 @@ const Register = () => {
               <div className="">
                 <input
                   placeholder="Número"
-                  className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                   type="text"
                   name="numero"
                   value={formData.numero}
@@ -169,7 +169,7 @@ const Register = () => {
               <div className="">
                 <input
                   placeholder="Codigo Postal"
-                  className="my-1 mr-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  className="my-1 mr-2 px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                   type="text"
                   name="codigoPostal"
                   value={formData.codigoPostal}
