@@ -1,39 +1,36 @@
-import { useContext, useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useContext } from "react";
 
 import { CartContext } from "../context/CartContext";
 import { Link } from "wouter";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase/config";
-import { auth } from "../firebase/config";
 
 import { CartItem } from "../components/CartItem";
 
 const ShoppingCart = () => {
-  const [user] = useAuthState(auth); // Obtén el estado de autenticación actual
   const { cart, cartTotal } = useContext(CartContext);
-  const [sales, setSales] = useState([]);
+  // const [sales, setSales] = useState([]);
 
-  useEffect(() => {
-    const fetchSales = async () => {
-      const salesRef = collection(db, "sales");
-      const querySnapshot = await getDocs(salesRef);
-      const salesData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setSales(salesData);
-    };
-    fetchSales();
-  }, []);
+  // useEffect(() => {
+  //   const fetchSales = async () => {
+  //     const salesRef = collection(db, "sales");
+  //     const querySnapshot = await getDocs(salesRef);
+  //     const salesData = querySnapshot.docs.map((doc) => ({
+  //       ...doc.data(),
+  //       id: doc.id,
+  //     }));
+  //     setSales(salesData);
+  //   };
+  //   fetchSales();
+  // }, []);
 
-  const formatDate = (date) => {
-    const d = new Date(date);
-    const day = d.getDate().toString().padStart(2, "0");
-    const month = (d.getMonth() + 1).toString().padStart(2, "0");
-    const year = d.getFullYear().toString();
-    return `${day}/${month}/${year}`;
-  };
+  // const formatDate = (date) => {
+  //   const d = new Date(date);
+  //   const day = d.getDate().toString().padStart(2, "0");
+  //   const month = (d.getMonth() + 1).toString().padStart(2, "0");
+  //   const year = d.getFullYear().toString();
+  //   return `${day}/${month}/${year}`;
+  // };
 
   const handleAddElement = async () => {
     const cartObject = cart.reduce((obj, item) => {
@@ -62,15 +59,13 @@ const ShoppingCart = () => {
 
   return (
     <>
-      {user && <p>Email: {user.email}</p>}
-
-      <div className="m-2 p-2 flex items-end">
+      <div className="m-2 p-2 flex items-end  ">
         <h1 className="mr-6 text-[#430199] text-3xl">
           Carrito de Compras
         </h1>
         <div className="flex-grow h-0.5 bg-[#430199]"></div>
       </div>
-      <div className="p-4 w-2/3 mx-auto rounded-xl">
+      <div className="p-4 w-2/3 mx-auto min-w-[400px] rounded-xl">
         {cart.length === 0 ? (
           <p className="text-black">No hay productos en el carrito.</p>
         ) : (
@@ -81,7 +76,7 @@ const ShoppingCart = () => {
           </div>
         )}
         
-        <div className="flex flex-col w-2/5 mx-auto my-6 text-black font-semibold">
+        <div className="flex flex-col min-w-[300px] w-2/5 mx-auto my-6 text-black font-semibold">
         <div className="flex-grow h-0.5 bg-purple-700"></div>
         <div className="flex justify-between ">
           <h3 className="my-2">
@@ -110,12 +105,12 @@ const ShoppingCart = () => {
         </div>
       </div>
     </div>
-    <div className="m-2 p-2 flex items-end">
+{/* <div className="m-2 p-2 flex items-end">
 <h1 className="mr-6 text-[#430199] text-3xl">Historial de Compras</h1>
 <div className="flex-grow h-0.5 bg-[#430199]"></div>
 </div>
 
-<div className="flex flex-wrap">
+ <div className="flex flex-wrap">
 {sales.map((sale) => (
   <div key={sale.id}>
     <div className="bg-gradient-to-br from-white to-transparent rounded-lg shadow-lg py-4 px-6 m-6 w-64 h-72 text-left">
@@ -130,7 +125,7 @@ const ShoppingCart = () => {
     </div>
   </div>
 ))}
-</div>
+</div> */}
 
     </>
   );

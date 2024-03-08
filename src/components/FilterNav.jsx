@@ -50,7 +50,7 @@ function FilterNav () {
 
 
     return (
-        <div className="flex fixed z-50 justify-center w-full bg-[#F3F2F5] h-12">
+        <div className="flex fixed z-10 justify-center w-full bg-[#F3F2F5] h-12">
         <div className="flex flex-row justify-between w-10/12">
           <div className="flex items-center ">
             <Select
